@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Utilisateur;
+import beans.Company;
 import dao.DAOFactory;
-import dao.UtilisateurDao;
+import dao.CompanyDao;
 import forms.ConnexionForm;
 
 public class Connexion extends HttpServlet {
@@ -22,11 +22,11 @@ public class Connexion extends HttpServlet {
 	public static final String	VUE					= "/WEB-INF/connexion.jsp";
 	public static final String	ACCES_RESTREINT		= "/homepage";
 
-	private UtilisateurDao		utilisateurDao;
+	private CompanyDao		utilisateurDao;
 
 	public void init() throws ServletException {
 		/* Récupération d'une instance de notre DAO Utilisateur */
-		this.utilisateurDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getUtilisateurDao();
+		this.utilisateurDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getCompanyDao();
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,7 +39,7 @@ public class Connexion extends HttpServlet {
 		ConnexionForm form = new ConnexionForm(utilisateurDao);
 
 		/* Traitement de la requête et récupération du bean en résultant */
-		Utilisateur utilisateur = form.connecterUtilisateur(request);
+		Company utilisateur = form.connecterUtilisateur(request);
 
 		/* Récupération de la session depuis la requête */
 		HttpSession session = request.getSession();

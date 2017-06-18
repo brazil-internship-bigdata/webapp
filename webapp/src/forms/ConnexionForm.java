@@ -5,17 +5,17 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import beans.Utilisateur;
-import dao.UtilisateurDao;
+import beans.Company;
+import dao.CompanyDao;
 
 public final class ConnexionForm {
 	private static final String	CHAMP_EMAIL			= "email";
 	private static final String	CHAMP_PASS			= "motdepasse";
 	private static final String	ERREUR_CONNEXION	= "compteInconnu";
 
-	private UtilisateurDao		utilisateurDao;
+	private CompanyDao		utilisateurDao;
 
-	public ConnexionForm(UtilisateurDao utilisateurDao) {
+	public ConnexionForm(CompanyDao utilisateurDao) {
 		this.utilisateurDao = utilisateurDao;
 	}
 
@@ -30,12 +30,12 @@ public final class ConnexionForm {
 		return erreurs;
 	}
 
-	public Utilisateur connecterUtilisateur(HttpServletRequest request) {
+	public Company connecterUtilisateur(HttpServletRequest request) {
 		/* Récupération des champs du formulaire */
 		String email = getValeurChamp(request, CHAMP_EMAIL);
 		String motDePasse = getValeurChamp(request, CHAMP_PASS);
 
-		Utilisateur utilisateur = new Utilisateur();
+		Company utilisateur = new Company();
 
 		/* Validation du champ email. */
 		try {
@@ -53,9 +53,9 @@ public final class ConnexionForm {
 		}
 		utilisateur.setMotDePasse(motDePasse);
 
-		if (utilisateurDao.connecter(utilisateur.getEmail(), utilisateur.getMotDePasse())) {
+		if (utilisateurDao.loginCheck(utilisateur.getEmail(), utilisateur.getMotDePasse())) {
 			System.out.println("ZIMOULE connexion réussie");
-			utilisateur = utilisateurDao.trouver(email);
+			utilisateur = utilisateurDao.find(email);
 		} else {
 			System.out.println("ZIMOULE connexion échoué");
 			setErreur(ERREUR_CONNEXION, "Email ou mot de passe incorrect");

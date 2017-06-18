@@ -2,7 +2,7 @@ package beans;
 
 import java.sql.Timestamp;
 
-public class Utilisateur {
+public class Company {
 
 	private Long		id;
 	private String		email;

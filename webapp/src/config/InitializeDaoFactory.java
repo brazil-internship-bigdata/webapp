@@ -3,10 +3,12 @@ package config;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 import dao.DAOFactory;
 
-public class InitialisationDaoFactory implements ServletContextListener {
+@WebListener
+public class InitializeDaoFactory implements ServletContextListener {
 	private static final String	ATT_DAO_FACTORY	= "daofactory";
 
 	private DAOFactory			daoFactory;

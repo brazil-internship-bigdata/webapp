@@ -15,8 +15,8 @@ public class DAOFactory {
 	private static final String	FICHIER_PROPERTIES			= "/dao/dao.properties";
 	private static final String	PROPERTY_URL				= "url";
 	private static final String	PROPERTY_DRIVER				= "driver";
-	private static final String	PROPERTY_NOM_UTILISATEUR	= "nomutilisateur";
-	private static final String	PROPERTY_MOT_DE_PASSE		= "motdepasse";
+	private static final String	PROPERTY_NOM_UTILISATEUR	= "username";
+	private static final String	PROPERTY_MOT_DE_PASSE		= "password";
 
 	/* package */BoneCP			connectionPool				= null;
 
@@ -32,33 +32,33 @@ public class DAOFactory {
 		Properties properties = new Properties();
 		String url;
 		String driver;
-		String nomUtilisateur;
-		String motDePasse;
+		String username;
+		String password;
 		BoneCP connectionPool = null;
 
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		InputStream fichierProperties = classLoader.getResourceAsStream(FICHIER_PROPERTIES);
 
 		if (fichierProperties == null) {
-			throw new DAOConfigurationException("Le fichier properties " + FICHIER_PROPERTIES + " est introuvable.");
+			throw new DAOConfigurationException("The file properties " + FICHIER_PROPERTIES + " is not found.");
 		}
 
 		try {
 			properties.load(fichierProperties);
 			url = properties.getProperty(PROPERTY_URL);
 			driver = properties.getProperty(PROPERTY_DRIVER);
-			nomUtilisateur = properties.getProperty(PROPERTY_NOM_UTILISATEUR);
-			motDePasse = properties.getProperty(PROPERTY_MOT_DE_PASSE);
+			username = properties.getProperty(PROPERTY_NOM_UTILISATEUR);
+			password = properties.getProperty(PROPERTY_MOT_DE_PASSE);
 		} catch (FileNotFoundException e) {
-			throw new DAOConfigurationException("Le fichier properties " + FICHIER_PROPERTIES + " est introuvable.", e);
+			throw new DAOConfigurationException("The file properties " + FICHIER_PROPERTIES + " is not found.", e);
 		} catch (IOException e) {
-			throw new DAOConfigurationException("Impossible de charger le fichier properties " + FICHIER_PROPERTIES, e);
+			throw new DAOConfigurationException("Impossible to load le fichier properties " + FICHIER_PROPERTIES, e);
 		}
 
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
-			throw new DAOConfigurationException("Le driver est introuvable dans le classpath.", e);
+			throw new DAOConfigurationException("The driver is not found in the classpath.", e);
 		}
 
 		try {
@@ -69,8 +69,8 @@ public class DAOFactory {
 			BoneCPConfig config = new BoneCPConfig();
 			/* Mise en place de l'URL, du nom et du mot de passe */
 			config.setJdbcUrl(url);
-			config.setUsername(nomUtilisateur);
-			config.setPassword(motDePasse);
+			config.setUsername(username);
+			config.setPassword(password);
 			/* Paramétrage de la taille du pool */
 			config.setMinConnectionsPerPartition(5);
 			config.setMaxConnectionsPerPartition(10);
@@ -81,7 +81,7 @@ public class DAOFactory {
 			connectionPool = new BoneCP(config);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOConfigurationException("Erreur de configuration du pool de connexions.", e);
+			throw new DAOConfigurationException("Error during  configuration of the pool of connexions.", e);
 		}
 		/*
 		 * Enregistrement du pool créé dans une variable d'instance via un appel
@@ -100,7 +100,7 @@ public class DAOFactory {
 	 * Méthodes de récupération de l'implémentation des différents DAO (un seul
 	 * pour le moment)
 	 */
-	public UtilisateurDao getUtilisateurDao() {
-		return new UtilisateurDaoImpl(this);
+	public CompanyDao getCompanyDao() {
+		return new CompanyDaoImpl(this);
 	}
 }

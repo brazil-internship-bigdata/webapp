@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Utilisateur;
+import beans.Company;
 import dao.DAOFactory;
-import dao.UtilisateurDao;
+import dao.CompanyDao;
 import forms.InscriptionForm;
 
 public class Inscription extends HttpServlet {
@@ -18,11 +18,11 @@ public class Inscription extends HttpServlet {
 	public static final String	ATT_FORM			= "form";
 	public static final String	VUE					= "/WEB-INF/inscription.jsp";
 
-	private UtilisateurDao		utilisateurDao;
+	private CompanyDao		utilisateurDao;
 
 	public void init() throws ServletException {
 		/* Récupération d'une instance de notre DAO Utilisateur */
-		this.utilisateurDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getUtilisateurDao();
+		this.utilisateurDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getCompanyDao();
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,7 +35,7 @@ public class Inscription extends HttpServlet {
 		InscriptionForm form = new InscriptionForm(utilisateurDao);
 
 		/* Traitement de la requête et récupération du bean en résultant */
-		Utilisateur utilisateur = form.inscrireUtilisateur(request);
+		Company utilisateur = form.inscrireUtilisateur(request);
 
 		/* Stockage du formulaire et du bean dans l'objet request */
 		request.setAttribute(ATT_FORM, form);

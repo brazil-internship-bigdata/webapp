@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.jasypt.util.password.ConfigurablePasswordEncryptor;
 
-import beans.Utilisateur;
+import beans.Company;
 import dao.DAOException;
-import dao.UtilisateurDao;
+import dao.CompanyDao;
 
 public final class InscriptionForm {
 	private static final String	CHAMP_EMAIL			= "email";
@@ -21,9 +21,9 @@ public final class InscriptionForm {
 
 	private String				resultat;
 	private Map<String, String>	erreurs				= new HashMap<String, String>();
-	private UtilisateurDao		utilisateurDao;
+	private CompanyDao		utilisateurDao;
 
-	public InscriptionForm(UtilisateurDao utilisateurDao) {
+	public InscriptionForm(CompanyDao utilisateurDao) {
 		this.utilisateurDao = utilisateurDao;
 	}
 
@@ -35,20 +35,20 @@ public final class InscriptionForm {
 		return resultat;
 	}
 
-	public Utilisateur inscrireUtilisateur(HttpServletRequest request) {
+	public Company inscrireUtilisateur(HttpServletRequest request) {
 		String email = getValeurChamp(request, CHAMP_EMAIL);
 		String motDePasse = getValeurChamp(request, CHAMP_PASS);
 		String confirmation = getValeurChamp(request, CHAMP_CONF);
 		String nom = getValeurChamp(request, CHAMP_NOM);
 
-		Utilisateur utilisateur = new Utilisateur();
+		Company utilisateur = new Company();
 		try {
 			traiterEmail(email, utilisateur);
 			traiterMotsDePasse(motDePasse, confirmation, utilisateur);
 			traiterNom(nom, utilisateur);
 
 			if (erreurs.isEmpty()) {
-				utilisateurDao.creer(utilisateur);
+				utilisateurDao.create(utilisateur);
 				resultat = "Succes de l'inscription.";
 			} else {
 				resultat = "Echec de l'inscription.";
@@ -65,7 +65,7 @@ public final class InscriptionForm {
 	 * Appel Ã la validation de l'adresse email reÃ§ue et initialisation de la
 	 * propriÃ©tÃ© email du bean
 	 */
-	private void traiterEmail(String email, Utilisateur utilisateur) {
+	private void traiterEmail(String email, Company utilisateur) {
 		try {
 			validationEmail(email);
 		} catch (FormValidationException e) {
@@ -78,7 +78,7 @@ public final class InscriptionForm {
 	 * Appel Ã la validation des mots de passe reÃ§us, chiffrement du mot de
 	 * passe et initialisation de la propriÃ©tÃ© motDePasse du bean
 	 */
-	private void traiterMotsDePasse(String motDePasse, String confirmation, Utilisateur utilisateur) {
+	private void traiterMotsDePasse(String motDePasse, String confirmation, Company utilisateur) {
 		try {
 			validationMotsDePasse(motDePasse, confirmation);
 		} catch (FormValidationException e) {
@@ -109,7 +109,7 @@ public final class InscriptionForm {
 	 * Appel Ã la validation du nom reÃ§u et initialisation de la propriÃ©tÃ©
 	 * nom du bean
 	 */
-	private void traiterNom(String nom, Utilisateur utilisateur) {
+	private void traiterNom(String nom, Company utilisateur) {
 		try {
 			validationNom(nom);
 		} catch (FormValidationException e) {
@@ -123,7 +123,7 @@ public final class InscriptionForm {
 		if (email != null) {
 			if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
 				throw new FormValidationException("Merci de saisir une adresse mail valide.");
-			} else if (utilisateurDao.trouver(email) != null) {
+			} else if (utilisateurDao.find(email) != null) {
 				throw new FormValidationException(
 						"Cette adresse email est dÃ©jÃ  utilisÃ©e, merci d'en choisir une autre.");
 			}
