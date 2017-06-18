@@ -49,12 +49,12 @@ public final class InscriptionForm {
 
 			if (erreurs.isEmpty()) {
 				utilisateurDao.creer(utilisateur);
-				resultat = "SuccÃ¨s de l'inscription.";
+				resultat = "Succes de l'inscription.";
 			} else {
-				resultat = "Ã‰chec de l'inscription.";
+				resultat = "Echec de l'inscription.";
 			}
 		} catch (DAOException e) {
-			resultat = "Ã‰chec de l'inscription : une erreur imprÃ©vue est survenue, merci de rÃ©essayer dans quelques instants.";
+			resultat = "Echec de l'inscription : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
 			e.printStackTrace();
 		}
 
@@ -102,7 +102,7 @@ public final class InscriptionForm {
 		passwordEncryptor.setPlainDigest(false);
 		String motDePasseChiffre = passwordEncryptor.encryptPassword(motDePasse);
 
-		// utilisateur.setMotDePasse(motDePasseChiffre);
+		utilisateur.setMotDePasse(motDePasse);
 	}
 
 	/*
