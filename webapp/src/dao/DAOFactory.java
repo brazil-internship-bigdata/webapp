@@ -12,87 +12,95 @@ import com.jolbox.bonecp.BoneCPConfig;
 
 public class DAOFactory {
 
-	private static final String	PROPERTIES_FILE		= "/dao/dao.properties";
-	private static final String	PROPERTY_URL		= "url";
-	private static final String	PROPERTY_DRIVER		= "driver";
-	private static final String	PROPERTY_USERNAME	= "username";
-	private static final String	PROPERTY_PASSWORD	= "password";
+	private static final String	FICHIER_PROPERTIES			= "/dao/dao.properties";
+	private static final String	PROPERTY_URL				= "url";
+	private static final String	PROPERTY_DRIVER				= "driver";
+	private static final String	PROPERTY_NOM_UTILISATEUR	= "nomutilisateur";
+	private static final String	PROPERTY_MOT_DE_PASSE		= "motdepasse";
 
-	/* package */BoneCP			connectionPool		= null;
+	/* package */BoneCP			connectionPool				= null;
 
 	/* package */ DAOFactory(BoneCP connectionPool) {
 		this.connectionPool = connectionPool;
 	}
 
 	/*
-	 * Get informations about database, load JDBC driver and return instance of
-	 * DAOFactory
+	 * Méthode chargée de récupérer les informations de connexion à la base de
+	 * données, charger le driver JDBC et retourner une instance de la Factory
 	 */
 	public static DAOFactory getInstance() throws DAOConfigurationException {
 		Properties properties = new Properties();
 		String url;
 		String driver;
-		String username;
-		String password;
+		String nomUtilisateur;
+		String motDePasse;
 		BoneCP connectionPool = null;
 
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		InputStream fileProperties = classLoader.getResourceAsStream(PROPERTIES_FILE);
+		InputStream fichierProperties = classLoader.getResourceAsStream(FICHIER_PROPERTIES);
 
-		if (fileProperties == null) {
-			throw new DAOConfigurationException("The file properties " + PROPERTIES_FILE + " is not found.");
+		if (fichierProperties == null) {
+			throw new DAOConfigurationException("Le fichier properties " + FICHIER_PROPERTIES + " est introuvable.");
 		}
 
 		try {
-			properties.load(fileProperties);
+			properties.load(fichierProperties);
 			url = properties.getProperty(PROPERTY_URL);
 			driver = properties.getProperty(PROPERTY_DRIVER);
-			username = properties.getProperty(PROPERTY_USERNAME);
-			password = properties.getProperty(PROPERTY_PASSWORD);
+			nomUtilisateur = properties.getProperty(PROPERTY_NOM_UTILISATEUR);
+			motDePasse = properties.getProperty(PROPERTY_MOT_DE_PASSE);
 		} catch (FileNotFoundException e) {
-			throw new DAOConfigurationException("The file properties " + PROPERTIES_FILE + " is not found.", e);
+			throw new DAOConfigurationException("Le fichier properties " + FICHIER_PROPERTIES + " est introuvable.", e);
 		} catch (IOException e) {
-			throw new DAOConfigurationException("Impossible to load the file properties " + PROPERTIES_FILE, e);
+			throw new DAOConfigurationException("Impossible de charger le fichier properties " + FICHIER_PROPERTIES, e);
 		}
 
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
-			throw new DAOConfigurationException("Driver not found in the classpath.", e);
+			throw new DAOConfigurationException("Le driver est introuvable dans le classpath.", e);
 		}
 
 		try {
 			/*
-			 * Initialize configuration of a connectionPool
+			 * Création d'une configuration de pool de connexions via l'objet
+			 * BoneCPConfig et les différents setters associés.
 			 */
 			BoneCPConfig config = new BoneCPConfig();
 			/* Mise en place de l'URL, du nom et du mot de passe */
 			config.setJdbcUrl(url);
-			config.setUsername(username);
-			config.setPassword(password);
+			config.setUsername(nomUtilisateur);
+			config.setPassword(motDePasse);
+			/* Paramétrage de la taille du pool */
 			config.setMinConnectionsPerPartition(5);
 			config.setMaxConnectionsPerPartition(10);
 			config.setPartitionCount(2);
 			/*
-			 * Creating pool
+			 * Création du pool à partir de la configuration, via l'objet BoneCP
 			 */
 			connectionPool = new BoneCP(config);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOConfigurationException("Error of configuration of the pool of connections.", e);
+			throw new DAOConfigurationException("Erreur de configuration du pool de connexions.", e);
 		}
-
+		/*
+		 * Enregistrement du pool créé dans une variable d'instance via un appel
+		 * au constructeur de DAOFactory
+		 */
 		DAOFactory instance = new DAOFactory(connectionPool);
 		return instance;
 	}
 
-	/* Provide connection to connection */
+	/* Méthode chargée de fournir une connexion à la base de données */
 	/* package */Connection getConnection() throws SQLException {
 		return connectionPool.getConnection();
 	}
 
+	/*
+	 * Méthodes de récupération de l'implémentation des différents DAO (un seul
+	 * pour le moment)
+	 */
 	public UtilisateurDao getUtilisateurDao() {
 		return new UtilisateurDaoImpl(this);
 	}
-
 }

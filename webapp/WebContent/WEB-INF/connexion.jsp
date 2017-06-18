@@ -29,5 +29,7 @@
                 <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
             </fieldset>
         </form>
+        
+          <p><a href='<c:url value="/inscription"/>'>Inscription</a></p>
     </body>
 </html>

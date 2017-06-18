@@ -11,6 +11,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 
 	private static final String	SQL_SELECT_PAR_EMAIL	= "SELECT id, email, nom, mot_de_passe, date_inscription FROM Utilisateur WHERE email = ?";
 	private static final String	SQL_INSERT				= "INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES (?, ?, ?, NOW())";
+	private static final String	SQL_CONNECTION			= "SELECT id, email, nom, mot_de_passe, date_inscription FROM Utilisateur WHERE email = ? AND mot_de_passe = ?";
 
 	private DAOFactory			daoFactory;
 
@@ -55,6 +56,40 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		} finally {
 			DAOTools.silentCloses(valeursAutoGenerees, preparedStatement, connexion);
 		}
+	}
+
+	@Override
+	public boolean connecter(String email, String mdp) throws DAOException {
+
+		System.out.println("Mail " + email);
+		System.out.println("mdp " + mdp);
+
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		boolean result = false;
+
+		try {
+			/* RÃ©cupÃ©ration d'une connexion depuis la Factory */
+			connexion = daoFactory.getConnection();
+			/*
+			 * PrÃ©paration de la requÃªte avec les objets passÃ©s en arguments
+			 * (ici, uniquement une adresse email) et exÃ©cution.
+			 */
+			preparedStatement = DAOTools.initializePreparedStatement(connexion, SQL_CONNECTION, false, email, mdp);
+			resultSet = preparedStatement.executeQuery();
+			/* Parcours de la ligne de donnÃ©es retournÃ©e dans le ResultSet */
+			if (resultSet.next()) {
+				System.out.println("result ");
+				result = true;
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOTools.silentCloses(resultSet, preparedStatement, connexion);
+		}
+
+		return result;
 	}
 
 	/*

@@ -6,13 +6,21 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Utilisateur;
+import dao.UtilisateurDao;
 
 public final class ConnexionForm {
-	private static final String	CHAMP_EMAIL	= "email";
-	private static final String	CHAMP_PASS	= "motdepasse";
+	private static final String	CHAMP_EMAIL			= "email";
+	private static final String	CHAMP_PASS			= "motdepasse";
+	private static final String	ERREUR_CONNEXION	= "compteInconnu";
+
+	private UtilisateurDao		utilisateurDao;
+
+	public ConnexionForm(UtilisateurDao utilisateurDao) {
+		this.utilisateurDao = utilisateurDao;
+	}
 
 	private String				resultat;
-	private Map<String, String>	erreurs		= new HashMap<String, String>();
+	private Map<String, String>	erreurs	= new HashMap<String, String>();
 
 	public String getResultat() {
 		return resultat;
@@ -45,9 +53,19 @@ public final class ConnexionForm {
 		}
 		utilisateur.setMotDePasse(motDePasse);
 
+		if (utilisateurDao.connecter(utilisateur.getEmail(), utilisateur.getMotDePasse())) {
+			System.out.println("ZIMOULE connexion réussie");
+			utilisateur = utilisateurDao.trouver(email);
+		} else {
+			System.out.println("ZIMOULE connexion échoué");
+			setErreur(ERREUR_CONNEXION, "Email ou mot de passe incorrect");
+		}
+
 		/* Initialisation du résultat global de la validation. */
 		if (erreurs.isEmpty()) {
+
 			resultat = "Succès de la connexion.";
+
 		} else {
 			resultat = "Échec de la connexion.";
 		}

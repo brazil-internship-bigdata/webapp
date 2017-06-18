@@ -102,7 +102,7 @@ public final class InscriptionForm {
 		passwordEncryptor.setPlainDigest(false);
 		String motDePasseChiffre = passwordEncryptor.encryptPassword(motDePasse);
 
-		utilisateur.setMotDePasse(motDePasseChiffre);
+		// utilisateur.setMotDePasse(motDePasseChiffre);
 	}
 
 	/*

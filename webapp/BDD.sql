@@ -15,5 +15,5 @@ CREATE TABLE  bdd_sdzee.Utilisateur (
 
 ALTER TABLE Utilisateur CHANGE mot_de_passe mot_de_passe CHAR(56) NOT NULL;
 
-INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES ('coyote@mail.acme', MD5('bipbip'), 'Coyote', NOW());
-INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES ('jadorejquery@unefois.be', MD5('avecdesfrites'), 'Thunderseb', NOW());
+INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES ('coyote@mail.acme', 'bipbip', 'Coyote', NOW());
+INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES ('jadorejquery@unefois.be', 'avecdesfrites', 'Thunderseb', NOW());
