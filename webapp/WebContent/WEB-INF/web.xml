@@ -18,6 +18,16 @@
 		<servlet-class>servlets.Connexion</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>Deconnexion</servlet-name>
+		<servlet-class>servlets.Deconnexion</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>Homepage</servlet-name>
+		<servlet-class>servlets.Homepage</servlet-class>
+	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>Restriction</servlet-name>
 		<url-pattern>/restriction</url-pattern>
@@ -27,29 +37,25 @@
 		<servlet-name>Inscription</servlet-name>
 		<url-pattern>/inscription</url-pattern>
 	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>Connexion</servlet-name>
 		<url-pattern>/connexion</url-pattern>
 	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Deconnexion</servlet-name>
+		<url-pattern>/deconnexion</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet-mapping>
+		<servlet-name>Homepage</servlet-name>
+		<url-pattern>/homepage</url-pattern>
+	</servlet-mapping>
 	
 
 
-<servlet>
-	<servlet-name>Deconnexion</servlet-name>
-	<servlet-class>servlets.Deconnexion</servlet-class>
-</servlet>
 
 
-
-<servlet-mapping>
-	<servlet-name>Deconnexion</servlet-name>
-	<url-pattern>/deconnexion</url-pattern>
-</servlet-mapping>
-
-
-	
-	
-	
-	
-	
 </web-app>

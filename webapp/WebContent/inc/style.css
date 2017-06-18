@@ -34,3 +34,11 @@ form input.sansLabel {
 form .requis {
     color: #c00;
 }
+
+.erreur {
+	color : red;
+}
+
+.succes {
+	color : green;
+}

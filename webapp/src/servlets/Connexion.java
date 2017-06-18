@@ -12,10 +12,12 @@ import beans.Utilisateur;
 import forms.ConnexionForm;
 
 public class Connexion extends HttpServlet {
+	public static final String	HOMEPAGE			= "homepage";
 	public static final String	ATT_USER			= "utilisateur";
 	public static final String	ATT_FORM			= "form";
 	public static final String	ATT_SESSION_USER	= "sessionUtilisateur";
 	public static final String	VUE					= "/WEB-INF/connexion.jsp";
+	public static final String	ACCES_RESTREINT		= "/homepage";
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Affichage de la page de connexion */
@@ -38,14 +40,16 @@ public class Connexion extends HttpServlet {
 		 */
 		if (form.getErreurs().isEmpty()) {
 			session.setAttribute(ATT_SESSION_USER, utilisateur);
+			response.sendRedirect(HOMEPAGE);
 		} else {
 			session.setAttribute(ATT_SESSION_USER, null);
+
+			/* Stockage du formulaire et du bean dans l'objet request */
+			request.setAttribute(ATT_FORM, form);
+			request.setAttribute(ATT_USER, utilisateur);
+
+			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		}
 
-		/* Stockage du formulaire et du bean dans l'objet request */
-		request.setAttribute(ATT_FORM, form);
-		request.setAttribute(ATT_USER, utilisateur);
-
-		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 }
