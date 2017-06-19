@@ -8,7 +8,7 @@
         <link type="text/css" rel="stylesheet" href='<c:url value="/inc/style.css"/>'>
     </head>
     <body>
-        <form method="post" action="connexion">
+        <form method="post" action="login">
             <fieldset>
                 <legend>Connexion</legend>
                 <p>Vous pouvez vous connecter via ce formulaire.</p>
@@ -30,6 +30,6 @@
             </fieldset>
         </form>
         
-          <p><a href='<c:url value="/inscription"/>'>Inscription</a></p>
+          <p><a href='<c:url value="/signin"/>'>Inscription</a></p>
     </body>
 </html>

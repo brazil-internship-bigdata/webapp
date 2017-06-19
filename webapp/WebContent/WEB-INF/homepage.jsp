@@ -10,6 +10,6 @@
     <body>
         <p>Vous êtes connecté(e) avec l'adresse ${sessionScope.sessionUtilisateur.email}, vous avez bien accès à l'espace restreint.</p>
         
-        <p><a href='<c:url value="/deconnexion"/>'>Deconnexion</a></p>
+        <p><a href='<c:url value="logout"/>'>Deconnexion</a></p>
     </body>
 </html>
