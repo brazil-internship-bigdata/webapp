@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import beans.Company;
 import dao.DAOFactory;
 import dao.CompanyDao;
-import forms.InscriptionForm;
+import forms.SignInForm;
 
 public class Inscription extends HttpServlet {
 	public static final String	CONF_DAO_FACTORY	= "daofactory";
@@ -32,10 +32,10 @@ public class Inscription extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Préparation de l'objet formulaire */
-		InscriptionForm form = new InscriptionForm(utilisateurDao);
+		SignInForm form = new SignInForm(utilisateurDao);
 
 		/* Traitement de la requête et récupération du bean en résultant */
-		Company utilisateur = form.inscrireUtilisateur(request);
+		Company utilisateur = form.signInCompany(request);
 
 		/* Stockage du formulaire et du bean dans l'objet request */
 		request.setAttribute(ATT_FORM, form);
