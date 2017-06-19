@@ -3,17 +3,64 @@ CREATE DATABASE bdd_sdzee DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 CREATE USER 'java'@'localhost' IDENTIFIED BY 'SdZ_eE';
 GRANT ALL ON bdd_sdzee.* TO 'java'@'localhost' IDENTIFIED BY 'SdZ_eE';
 
-CREATE TABLE  bdd_sdzee.Utilisateur (
- id INT( 11 ) NOT NULL AUTO_INCREMENT ,
- email VARCHAR( 60 ) NOT NULL ,
- mot_de_passe VARCHAR( 32 ) NOT NULL ,
- nom VARCHAR( 20 ) NOT NULL ,
- date_inscription DATETIME NOT NULL ,
- PRIMARY KEY ( id ),
- UNIQUE ( email )
-) ENGINE = INNODB;
+CREATE TABLE bdd_sdzee.Company (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    company_name VARCHAR(100) NOT NULL,
+    password_company CHAR (32 ) NOT NULL,
+    responsible_1_name VARCHAR(100) NOT NULL,
+    responsible_1_email VARCHAR(100) NOT NULL,
+    responsible_1_phone VARCHAR(12) NOT NULL,
+    responsible_2_name VARCHAR(100) NOT NULL,
+    responsible_2_email VARCHAR(100) NOT NULL,
+    responsible_2_phone VARCHAR(12) NOT NULL,
+    project_responsible VARCHAR(100) NOT NULL,
+    submission_type VARCHAR(30) NOT NULL,
+    file_type VARCHAR(10) NOT NULL,
+    data_description TINYTEXT,
+    PRIMARY KEY (id),
+    UNIQUE (company_name)
+)  ENGINE=INNODB;
 
-ALTER TABLE Utilisateur CHANGE mot_de_passe mot_de_passe CHAR(56) NOT NULL;
+-- Submission type : 'email', 'fileshare', 'webservice'
+-- filetype : 'csv', 'excel'
 
-INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES ('coyote@mail.acme', 'bipbip', 'Coyote', NOW());
-INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES ('jadorejquery@unefois.be', 'avecdesfrites', 'Thunderseb', NOW());
+
+CREATE TABLE bdd_sdzee.File (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    filename VARCHAR(60) NOT NULL,
+    type VARCHAR(10) NOT NULL,
+    id_company INT(11),
+    dateUpload DATE,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_company)
+        REFERENCES Company (id)
+        ON DELETE CASCADE
+)  ENGINE=INNODB;
+
+
+
+INSERT INTO Company (   company_name, 
+	password_company,
+    responsible_1_name ,
+    responsible_1_email ,
+    responsible_1_phone ,
+    responsible_2_name,
+    responsible_2_email,
+    responsible_2_phone ,
+    project_responsible ,
+    submission_type ,
+    file_type ,
+    data_description ) VALUES (
+    "BUS",
+    "bus",
+    "Pedro",
+    "pedro@mail.fr",
+    "0123456789",
+	"Rodrigo",
+    "rodrigo@mail.fr",
+    "0123456788",
+    "Rodrigo",
+    "webservice",
+    "csv",
+    "Company de BUS floripa"
+    );
