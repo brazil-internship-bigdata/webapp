@@ -10,8 +10,6 @@ public final class LoginForm extends Form {
 	private static final String	CHAMP_PASS			= "motdepasse";
 	private static final String	CONNECTION_ERROR	= "compteInconnu";
 
-	private CompanyDao			companyDao;
-
 	public LoginForm(CompanyDao companyDao) {
 		super(companyDao);
 	}
