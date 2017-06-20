@@ -15,7 +15,7 @@ public final class SignInForm extends Form {
 	private static final String	CHAMP_CONF			= "confirmation";
 	private static final String	CHAMP_NAME			= "nom";
 
-	private static final String	ALGO_CHIFFREMENT	= "SHA-256";
+	// private static final String ENCRYPTION_ALGORITHM = "SHA-256";
 
 	public SignInForm(CompanyDao companyDao) {
 		super(companyDao);

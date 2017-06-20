@@ -13,6 +13,7 @@ import dao.CompanyDao;
 import dao.DAOFactory;
 import forms.SignInForm;
 
+@SuppressWarnings("serial")
 @WebServlet("/signin")
 public class Signin extends HttpServlet {
 	public static final String	CONF_DAO_FACTORY	= "daofactory";

@@ -14,6 +14,7 @@ import dao.CompanyDao;
 import dao.DAOFactory;
 import forms.LoginForm;
 
+@SuppressWarnings("serial")
 @WebServlet("/login")
 public class Login extends HttpServlet {
 	public static final String	CONF_DAO_FACTORY	= "daofactory";
