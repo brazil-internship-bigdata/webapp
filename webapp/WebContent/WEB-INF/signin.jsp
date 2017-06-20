@@ -40,6 +40,6 @@
             </fieldset>
         </form>
         
-       <p><a href='<c:url value="/signin"/>'>Connexion</a></p>
+       <p><a href='<c:url value="/login"/>'>Connexion</a></p>
     </body>
 </html>
