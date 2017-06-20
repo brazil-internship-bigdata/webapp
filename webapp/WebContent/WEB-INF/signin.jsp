@@ -39,5 +39,7 @@
                 <p class="${empty form.errors ? 'succes' : 'erreur'}">${form.results}</p>
             </fieldset>
         </form>
+        
+       <p><a href='<c:url value="/signin"/>'>Connexion</a></p>
     </body>
 </html>
