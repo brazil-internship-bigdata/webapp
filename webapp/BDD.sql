@@ -5,7 +5,8 @@ GRANT ALL ON bdd_sdzee.* TO 'java'@'localhost' IDENTIFIED BY 'SdZ_eE';
 
 CREATE TABLE bdd_sdzee.Company (
     id INT(11) NOT NULL AUTO_INCREMENT,
-    company_name VARCHAR(100) NOT NULL,
+    company_name VARCHAR(10) NOT NULL,
+    company_full_name VARCHAR(100) NOT NULL,
     password_company CHAR (32 ) NOT NULL,
     responsible_1_name VARCHAR(100) NOT NULL,
     responsible_1_email VARCHAR(100) NOT NULL,
@@ -41,6 +42,7 @@ CREATE TABLE bdd_sdzee.File (
 
 
 INSERT INTO Company (   company_name, 
+	company_full_name,
 	password_company,
     responsible_1_name ,
     responsible_1_email ,
@@ -54,6 +56,7 @@ INSERT INTO Company (   company_name,
     data_description,
     sign_in_date) VALUES (
     "BUS",
+    "Bus company of Floripa"
     "bus",
     "Pedro",
     "pedro@mail.fr",
@@ -64,6 +67,6 @@ INSERT INTO Company (   company_name,
     "Rodrigo",
     "webservice",
     "csv",
-    "Company de BUS floripa",
+    "User of the bus company of Floripa",
     NOW()
     );

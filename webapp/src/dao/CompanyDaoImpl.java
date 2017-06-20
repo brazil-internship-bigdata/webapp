@@ -9,9 +9,9 @@ import beans.Company;
 
 public class CompanyDaoImpl implements CompanyDao {
 
-	private static final String	SQL_SELECT_PAR_EMAIL	= "SELECT id, email, nom, mot_de_passe, date_inscription FROM Utilisateur WHERE email = ?";
-	private static final String	SQL_INSERT				= "INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES (?, ?, ?, NOW())";
-	private static final String	SQL_CONNECTION			= "SELECT id, email, nom, mot_de_passe, date_inscription FROM Utilisateur WHERE email = ? AND mot_de_passe = ?";
+	private static final String	SQL_SELECT_BY_NAME	= "SELECT * FROM Company WHERE  company_name = ?";
+	private static final String	SQL_INSERT			= "INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES (?, ?, ?, NOW())";
+	private static final String	SQL_CONNECTION		= "SELECT * FROM Company WHERE company_name = ? AND password_company = ?";
 
 	private DAOFactory			daoFactory;
 
@@ -23,8 +23,8 @@ public class CompanyDaoImpl implements CompanyDao {
 	 * ImplÃ©mentation de la mÃ©thode dÃ©finie dans l'interface UtilisateurDao
 	 */
 	@Override
-	public Company find(String email) throws DAOException {
-		return find(SQL_SELECT_PAR_EMAIL, email);
+	public Company find(String companyName) throws DAOException {
+		return find(SQL_SELECT_BY_NAME, companyName);
 	}
 
 	/*
@@ -59,10 +59,10 @@ public class CompanyDaoImpl implements CompanyDao {
 	}
 
 	@Override
-	public boolean loginCheck(String email, String mdp) throws DAOException {
+	public boolean loginCheck(String companyName, String password) throws DAOException {
 
-		System.out.println("Mail " + email);
-		System.out.println("mdp " + mdp);
+		System.out.println("Mail " + companyName);
+		System.out.println("mdp " + password);
 
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
@@ -76,7 +76,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			 * PrÃ©paration de la requÃªte avec les objets passÃ©s en arguments
 			 * (ici, uniquement une adresse email) et exÃ©cution.
 			 */
-			preparedStatement = DAOTools.initializePreparedStatement(connexion, SQL_CONNECTION, false, email, mdp);
+			preparedStatement = DAOTools.initializePreparedStatement(connexion, SQL_CONNECTION, false, companyName, password);
 			resultSet = preparedStatement.executeQuery();
 			/* Parcours de la ligne de donnÃ©es retournÃ©e dans le ResultSet */
 			if (resultSet.next()) {
@@ -101,7 +101,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		Company utilisateur = null;
+		Company company = null;
 
 		try {
 			/* RÃ©cupÃ©ration d'une connexion depuis la Factory */
@@ -114,7 +114,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			resultSet = preparedStatement.executeQuery();
 			/* Parcours de la ligne de donnÃ©es retournÃ©e dans le ResultSet */
 			if (resultSet.next()) {
-				utilisateur = map(resultSet);
+				company = map(resultSet);
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -122,7 +122,7 @@ public class CompanyDaoImpl implements CompanyDao {
 			DAOTools.silentCloses(resultSet, preparedStatement, connexion);
 		}
 
-		return utilisateur;
+		return company;
 	}
 
 	/*
@@ -131,13 +131,23 @@ public class CompanyDaoImpl implements CompanyDao {
 	 * ResultSet) et un bean Utilisateur.
 	 */
 	private static Company map(ResultSet resultSet) throws SQLException {
-		Company utilisateur = new Company();
-		utilisateur.setId(resultSet.getLong("id"));
-		utilisateur.setEmail(resultSet.getString("email"));
-		utilisateur.setMotDePasse(resultSet.getString("mot_de_passe"));
-		utilisateur.setNom(resultSet.getString("nom"));
-		utilisateur.setDateInscription(resultSet.getTimestamp("date_inscription"));
-		return utilisateur;
+		Company company = new Company();
+		company.setId(resultSet.getLong("id"));
+		company.setCompanyName("company_name");
+		company.setCompanyFullName("company_full_name");
+		company.setPasswordCompany("password_company");
+		company.setResponsible1Name("responsible_1_name");
+		company.setResponsible1Email("responsible_1_email");
+		company.setResponsible1Phone("responsible_1_phone");
+		company.setResponsible2Name("responsible_2_name");
+		company.setResponsible2Email("responsible_2_email");
+		company.setResponsible2Phone("responsible_2_phone");
+		company.setProjectResponsible("project_responsible");
+		company.setSubmissionType("submission_type");
+		company.setFileType("file_type");
+		company.setDataDescription("data_description");
+		company.setSignInDate("sign_in_date");
+		return company;
 	}
 
 }

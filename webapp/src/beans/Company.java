@@ -4,6 +4,7 @@ public class Company {
 
 	private Long	id;
 	private String	companyName;
+	private String	companyFullName;
 	private String	passwordCompany;
 	private String	responsible1Email;
 	private String	responsible1Name;
@@ -127,6 +128,14 @@ public class Company {
 
 	public void setSignInDate(String signInDate) {
 		this.signInDate = signInDate;
+	}
+
+	public String getCompanyFullName() {
+		return companyFullName;
+	}
+
+	public void setCompanyFullName(String companyFullName) {
+		this.companyFullName = companyFullName;
 	}
 
 }
