@@ -33,7 +33,7 @@ public final class SignInForm extends Form {
 			treatPassword(password, confirmation, company);
 			treatCompanyName(name, company);
 
-			if (getErrors().isEmpty()) {
+			if (errors.isEmpty()) {
 				companyDao.create(company);
 				results = SIGNIN_SUCCESSFUL;
 			} else {

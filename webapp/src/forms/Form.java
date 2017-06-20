@@ -14,12 +14,16 @@ public abstract class Form {
 		errors = new HashMap<String, String>();
 	}
 
-	protected CompanyDao		companyDao;
-	protected String			results;
-	private Map<String, String>	errors;
+	protected CompanyDao			companyDao;
+	protected String				results;
+	protected Map<String, String>	errors;
 
 	public Map<String, String> getErrors() {
 		return errors;
+	}
+
+	public String getResults() {
+		return results;
 	}
 
 	protected void setErreur(String champ, String message) {

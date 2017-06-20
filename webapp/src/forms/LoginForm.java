@@ -44,7 +44,7 @@ public final class LoginForm extends Form {
 		}
 
 		/* Initialisation du résultat global de la validation. */
-		if (getErrors().isEmpty()) {
+		if (errors.isEmpty()) {
 			results = "Connection successful";
 
 		} else {
