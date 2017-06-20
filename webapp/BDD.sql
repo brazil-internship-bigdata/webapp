@@ -10,13 +10,14 @@ CREATE TABLE bdd_sdzee.Company (
     responsible_1_name VARCHAR(100) NOT NULL,
     responsible_1_email VARCHAR(100) NOT NULL,
     responsible_1_phone VARCHAR(12) NOT NULL,
-    responsible_2_name VARCHAR(100) NOT NULL,
-    responsible_2_email VARCHAR(100) NOT NULL,
-    responsible_2_phone VARCHAR(12) NOT NULL,
+    responsible_2_name VARCHAR(100),
+    responsible_2_email VARCHAR(100),
+    responsible_2_phone VARCHAR(12) ,
     project_responsible VARCHAR(100) NOT NULL,
     submission_type VARCHAR(30) NOT NULL,
     file_type VARCHAR(10) NOT NULL,
     data_description TINYTEXT,
+    sign_in_date DATE NOT NULL,
     PRIMARY KEY (id),
     UNIQUE (company_name)
 )  ENGINE=INNODB;
@@ -50,7 +51,8 @@ INSERT INTO Company (   company_name,
     project_responsible ,
     submission_type ,
     file_type ,
-    data_description ) VALUES (
+    data_description,
+    sign_in_date) VALUES (
     "BUS",
     "bus",
     "Pedro",
@@ -62,5 +64,6 @@ INSERT INTO Company (   company_name,
     "Rodrigo",
     "webservice",
     "csv",
-    "Company de BUS floripa"
+    "Company de BUS floripa",
+    NOW()
     );

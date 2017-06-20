@@ -1,14 +1,21 @@
 package beans;
 
-import java.sql.Timestamp;
-
 public class Company {
 
-	private Long		id;
-	private String		email;
-	private String		motDePasse;
-	private String		nom;
-	private Timestamp	dateInscription;
+	private Long	id;
+	private String	companyName;
+	private String	passwordCompany;
+	private String	responsible1Email;
+	private String	responsible1Name;
+	private String	responsible1Phone;
+	private String	responsible2Email;
+	private String	responsible2Name;
+	private String	responsible2Phone;
+	private String	projectResponsible;
+	private String	submissionType;
+	private String	fileType;
+	private String	dataDescription;
+	private String	signInDate;
 
 	public Long getId() {
 		return id;
@@ -18,35 +25,108 @@ public class Company {
 		this.id = id;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public String getEmail() {
-		return email;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
-	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+	public String getPasswordCompany() {
+		return passwordCompany;
 	}
 
-	public String getMotDePasse() {
-		return motDePasse;
+	public void setPasswordCompany(String passwordCompany) {
+		this.passwordCompany = passwordCompany;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public String getResponsible1Email() {
+		return responsible1Email;
 	}
 
-	public String getNom() {
-		return nom;
+	public void setResponsible1Email(String responsible1Email) {
+		this.responsible1Email = responsible1Email;
 	}
 
-	public Timestamp getDateInscription() {
-		return dateInscription;
+	public String getResponsible1Name() {
+		return responsible1Name;
 	}
 
-	public void setDateInscription(Timestamp dateInscription) {
-		this.dateInscription = dateInscription;
+	public void setResponsible1Name(String responsible1Name) {
+		this.responsible1Name = responsible1Name;
 	}
+
+	public String getResponsible1Phone() {
+		return responsible1Phone;
+	}
+
+	public void setResponsible1Phone(String responsible1Phone) {
+		this.responsible1Phone = responsible1Phone;
+	}
+
+	public String getResponsible2Email() {
+		return responsible2Email;
+	}
+
+	public void setResponsible2Email(String responsible2Email) {
+		this.responsible2Email = responsible2Email;
+	}
+
+	public String getResponsible2Name() {
+		return responsible2Name;
+	}
+
+	public void setResponsible2Name(String responsible2Name) {
+		this.responsible2Name = responsible2Name;
+	}
+
+	public String getResponsible2Phone() {
+		return responsible2Phone;
+	}
+
+	public void setResponsible2Phone(String responsible2Phone) {
+		this.responsible2Phone = responsible2Phone;
+	}
+
+	public String getProjectResponsible() {
+		return projectResponsible;
+	}
+
+	public void setProjectResponsible(String projectResponsible) {
+		this.projectResponsible = projectResponsible;
+	}
+
+	public String getSubmissionType() {
+		return submissionType;
+	}
+
+	public void setSubmissionType(String submissionType) {
+		this.submissionType = submissionType;
+	}
+
+	public String getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+
+	public String getDataDescription() {
+		return dataDescription;
+	}
+
+	public void setDataDescription(String dataDescription) {
+		this.dataDescription = dataDescription;
+	}
+
+	public String getSignInDate() {
+		return signInDate;
+	}
+
+	public void setSignInDate(String signInDate) {
+		this.signInDate = signInDate;
+	}
+
 }
