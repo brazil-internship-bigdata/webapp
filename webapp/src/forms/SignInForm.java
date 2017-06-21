@@ -7,13 +7,28 @@ import dao.CompanyDao;
 import dao.DAOException;
 
 public final class SignInForm extends Form {
-	private static final String	SIGNIN_FAIL_LONG	= "Echec de l'inscription : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
-	private static final String	SIGNIN_FAIL			= "Echec de l'inscription.";
-	private static final String	SIGNIN_SUCCESSFUL	= "Succes de l'inscription.";
-	private static final String	CHAMP_EMAIL			= "email";
-	private static final String	CHAMP_PASS			= "motdepasse";
-	private static final String	CHAMP_CONF			= "confirmation";
-	private static final String	CHAMP_NAME			= "nom";
+	private static final String	SIGNIN_FAIL_LONG			= "Echec de l'inscription : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
+	private static final String	SIGNIN_FAIL					= "Echec de l'inscription.";
+	private static final String	SIGNIN_SUCCESSFUL			= "Succes de l'inscription.";
+	private static final String	CHAMP_EMAIL					= "email";
+
+	private static final String	FIELD_COMPANY_NAME			= "company_name";
+	private static final String	FIELD_COMPANY_FULL_NAME		= "company_full_name";
+	private static final String	FIELD_PASSWORD_COMPANY		= "password_company";
+	private static final String	FIELD_PASSWORD_CONFIRMATION	= "password_confirmation";
+	private static final String	FIELD_RESPONSIBLE_1_NAME	= "responsible_1_name";
+	private static final String	FIELD_RESPONSIBLE_1_PHONE	= "responsible_1_phone";
+	private static final String	FIELD_RESPONSIBLE_1_EMAIL	= "responsible_1_email";
+	private static final String	FIELD_RESPONSIBLE_2_NAME	= "responsible_2_name";
+	private static final String	FIELD_RESPONSIBLE_2_PHONE	= "responsible_2_phone";
+	private static final String	FIELD_RESPONSIBLE_2_EMAIL	= "responsible_2_email";
+	private static final String	FIELD_PROJECT_RESPONSIBLE	= "project_responsible";
+	private static final String	FIELD_SUBMISSION_TYPE		= "submission_type";
+	private static final String	FIELD_FILE_TYPE				= "file_type";
+
+	private static final String	CHAMP_PASS					= "password";
+	private static final String	CHAMP_CONF					= "confirmation";
+	private static final String	CHAMP_NAME					= "nom";
 
 	// private static final String ENCRYPTION_ALGORITHM = "SHA-256";
 
@@ -22,16 +37,35 @@ public final class SignInForm extends Form {
 	}
 
 	public Company signInCompany(HttpServletRequest request) {
-		String email = getValeurChamp(request, CHAMP_EMAIL);
-		String password = getValeurChamp(request, CHAMP_PASS);
-		String confirmation = getValeurChamp(request, CHAMP_CONF);
-		String name = getValeurChamp(request, CHAMP_NAME);
+
+		String companyName = getValeurChamp(request, FIELD_COMPANY_NAME);
+		String companyFullName = getValeurChamp(request, FIELD_COMPANY_FULL_NAME);
+		String passwordCompany = getValeurChamp(request, FIELD_PASSWORD_COMPANY);
+		String passwordConfirmation = getValeurChamp(request, FIELD_PASSWORD_CONFIRMATION);
+		String responsible1Email = getValeurChamp(request, FIELD_RESPONSIBLE_1_EMAIL);
+		String responsible1Phone = getValeurChamp(request, FIELD_RESPONSIBLE_1_PHONE);
+		String responsible1Name = getValeurChamp(request, FIELD_RESPONSIBLE_1_NAME);
+		String responsible2Email = getValeurChamp(request, FIELD_RESPONSIBLE_2_EMAIL);
+		String responsible2Phone = getValeurChamp(request, FIELD_RESPONSIBLE_2_PHONE);
+		String responsible2Name = getValeurChamp(request, FIELD_RESPONSIBLE_2_NAME);
+		String projectResponsible = getValeurChamp(request, FIELD_PROJECT_RESPONSIBLE);
+		String submissionType = getValeurChamp(request, FIELD_SUBMISSION_TYPE);
+		String fileType = getValeurChamp(request, FIELD_FILE_TYPE);
 
 		Company company = new Company();
 		try {
-			treatEmail(email, company);
-			treatPassword(password, confirmation, company);
-			treatCompanyName(name, company);
+			treatCompanyName(companyName, company);
+			treatCompanyFullName(companyFullName, company);
+			treatPassword(passwordCompany, passwordConfirmation, company);
+			treatResponsible1Email(responsible1Email, company);
+			treatResponsible1Phone(responsible1Phone, company);
+			treatResponsible1Name(responsible1Name, company);
+			treatResponsible2Email(responsible2Email, company);
+			treatResponsible2Phone(responsible2Phone, company);
+			treatResponsible2Name(responsible2Name, company);
+			treatProjectResponsible(projectResponsible, company);
+			treatSubmissionType(submissionType, company);
+			treatFileType(fileType, company);
 
 			if (errors.isEmpty()) {
 				companyDao.create(company);

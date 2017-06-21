@@ -4,10 +4,15 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Inscription</title>
+        <title>Signin</title>
          <link type="text/css" rel="stylesheet" href='<c:url value="/inc/style.css"/>'>
     </head>
     <body>
+    	<form method="post" action="signin">
+    	  <fieldset>
+                <legend>Signup</legend>
+                <p>Please sign up with this form </p>
+    
         <form method="post" action="signin">
             <fieldset>
                 <legend>Inscription</legend>
