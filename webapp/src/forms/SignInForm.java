@@ -105,7 +105,8 @@ public final class SignInForm extends Form {
 
 	private void treatResponsible2Email(String email, Company company) {
 		try {
-			checkEmail(email);
+			if (email != null)
+				checkEmail(email);
 		} catch (FormValidationException e) {
 			setErreur(FIELD_RESPONSIBLE_2_EMAIL, e.getMessage());
 		}

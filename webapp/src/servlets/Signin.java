@@ -43,13 +43,13 @@ public class Signin extends HttpServlet {
 
 		/* Stockage du formulaire et du bean dans l'objet request */
 		request.setAttribute(ATT_FORM, form);
-		request.setAttribute(ATT_COMPANY, utilisateur);
 
 		if (!form.getErrors().isEmpty()) {
-			this.getServletContext().getRequestDispatcher(SUCCES_VUE).forward(request, response);
+			request.setAttribute(ATT_COMPANY, utilisateur);
 		} else {
-			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+			request.setAttribute(ATT_COMPANY, null);
 		}
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
 	}
 }

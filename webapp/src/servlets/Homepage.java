@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/homepage")
 public class Homepage extends HttpServlet {
 
-	public static final String	ATT_SESSION_USER	= "sessionUtilisateur";
+	public static final String	ATT_COMPANY_SESSION	= "companySession";
 
 	public static final String	ATT_CLIENT			= "client";
 	public static final String	ATT_FORM			= "form";
@@ -26,7 +26,7 @@ public class Homepage extends HttpServlet {
 
 		HttpSession httpSession = request.getSession();
 
-		if (httpSession.getAttribute(ATT_SESSION_USER) == null) {
+		if (httpSession.getAttribute(ATT_COMPANY_SESSION) == null) {
 			System.out.println("redirect");
 			response.sendRedirect(this.getServletContext().getContextPath() + URL_REDIRECTION);
 		} else {

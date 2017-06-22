@@ -8,7 +8,7 @@
          <link type="text/css" rel="stylesheet" href='<c:url value="/inc/style.css"/>'>
     </head>
     <body>
-        <p>Vous êtes connecté(e) avec l'adresse ${sessionScope.sessionUtilisateur.email}, vous avez bien accès à l'espace restreint.</p>
+        <p>Vous êtes connecté(e) avec  ${sessionScope.companySession.companyName}, vous avez bien accès à l'espace restreint.</p>
         
         <p><a href='<c:url value="logout"/>'>Deconnexion</a></p>
     </body>

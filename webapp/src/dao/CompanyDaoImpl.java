@@ -9,9 +9,9 @@ import beans.Company;
 
 public class CompanyDaoImpl implements CompanyDao {
 
-	private static final String	SQL_SELECT_BY_NAME	= "SELECT * FROM Company WHERE  company_name = ?";
+	private static final String	SQL_SELECT_BY_NAME	= "SELECT id,company_name,company_full_name,password_company,responsible_1_name,responsible_1_email,responsible_1_phone,responsible_2_name,responsible_2_email,responsible_2_phone,project_responsible,submission_type,file_type,data_description,sign_in_date FROM Company WHERE  company_name = ?";
 	private static final String	SQL_INSERT			= "INSERT INTO `bdd_sdzee`.`Company`(`company_name`,`company_full_name`,`password_company`,`responsible_1_name`,`responsible_1_email`,`responsible_1_phone`,`responsible_2_name`,`responsible_2_email`,`responsible_2_phone`,`project_responsible`,`submission_type`,`file_type`,`data_description`,`sign_in_date`)VALUES(	? , ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?, ?,  ?,  NOW());";
-	private static final String	SQL_CONNECTION		= "SELECT * FROM Company WHERE company_name = ? AND password_company = ?";
+	private static final String	SQL_CONNECTION		= "SELECT id,company_name,company_full_name,password_company,responsible_1_name,responsible_1_email,responsible_1_phone,responsible_2_name,responsible_2_email,responsible_2_phone,project_responsible,submission_type,file_type,data_description,sign_in_date FROM Company WHERE company_name = ? AND password_company = ?";
 
 	private DAOFactory			daoFactory;
 
@@ -137,20 +137,23 @@ public class CompanyDaoImpl implements CompanyDao {
 	private static Company map(ResultSet resultSet) throws SQLException {
 		Company company = new Company();
 		company.setId(resultSet.getLong("id"));
-		company.setCompanyName("company_name");
-		company.setCompanyFullName("company_full_name");
-		company.setPasswordCompany("password_company");
-		company.setResponsible1Name("responsible_1_name");
-		company.setResponsible1Email("responsible_1_email");
-		company.setResponsible1Phone("responsible_1_phone");
-		company.setResponsible2Name("responsible_2_name");
-		company.setResponsible2Email("responsible_2_email");
-		company.setResponsible2Phone("responsible_2_phone");
-		company.setProjectResponsible("project_responsible");
-		company.setSubmissionType("submission_type");
-		company.setFileType("file_type");
-		company.setDataDescription("data_description");
+		company.setCompanyName(resultSet.getString("company_name"));
+		company.setCompanyFullName(resultSet.getString("company_full_name"));
+		company.setPasswordCompany(resultSet.getString("password_company"));
+		company.setResponsible1Name(resultSet.getString("responsible_1_name"));
+		company.setResponsible1Email(resultSet.getString("responsible_1_email"));
+		company.setResponsible1Phone(resultSet.getString("responsible_1_phone"));
+		company.setResponsible2Name(resultSet.getString("responsible_2_name"));
+		company.setResponsible2Email(resultSet.getString("responsible_2_email"));
+		company.setResponsible2Phone(resultSet.getString("responsible_2_phone"));
+		company.setProjectResponsible(resultSet.getString("project_responsible"));
+		company.setSubmissionType(resultSet.getString("submission_type"));
+		company.setFileType(resultSet.getString("file_type"));
+		company.setDataDescription(resultSet.getString("data_description"));
 		company.setSignInDate("sign_in_date");
+
+		System.out.println("Map" + company.getCompanyName());
+
 		return company;
 	}
 

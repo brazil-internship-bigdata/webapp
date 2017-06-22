@@ -13,16 +13,16 @@
                 <legend>Connexion</legend>
                 <p>Vous pouvez vous connecter via ce formulaire.</p>
 
-                <label for="nom">Adresse email <span class="requis">*</span></label>
-                <input type="email" id="email" name="email" value="<c:out value="${utilisateur.email}"/>" size="20" maxlength="60" />
-                <span class="erreur">${form.errors['email']}</span>
+                <label for="company_name">Company name <span class="requis">*</span></label>
+                <input type="text" id="company_name" name="company_name" value="<c:out value="${company.companyName}"/>" size="20" maxlength="60" />
+                <span class="erreur">${form.errors['company_name']}</span>
                 <br />
 
-                <label for="motdepasse">Mot de passe <span class="requis">*</span></label>
-                <input type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
-                <span class="erreur">${form.errors['motdepasse']}</span>
+                 <label for="password_company">Password <span class="requis">*</span></label>
+                <input type="password" id="password_company" name="password_company" value="" size="20" maxlength="20" />
+                <span class="erreur">${form.errors['password_company']}</span>
                 <br />
-
+                
                 <input type="submit" value="Connexion" class="sansLabel" />
                 <br />
                 

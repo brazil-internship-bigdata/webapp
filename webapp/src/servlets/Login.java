@@ -21,7 +21,7 @@ public class Login extends HttpServlet {
 	public static final String	HOMEPAGE			= "homepage";
 	public static final String	ATT_COMPANY			= "company";
 	public static final String	ATT_FORM			= "form";
-	public static final String	ATT_SESSION_USER	= "sessionUtilisateur";
+	public static final String	ATT_COMPANY_SESSION	= "companySession";
 	public static final String	VUE					= "/WEB-INF/login.jsp";
 	public static final String	ACCES_RESTREINT		= "/homepage";
 
@@ -52,10 +52,13 @@ public class Login extends HttpServlet {
 		 * Utilisateur à la session, sinon suppression du bean de la session.
 		 */
 		if (form.getErrors().isEmpty()) {
-			session.setAttribute(ATT_SESSION_USER, company);
+			session.setAttribute(ATT_COMPANY_SESSION, company);
+
+			System.out.println(company.getCompanyName());
+
 			response.sendRedirect(HOMEPAGE);
 		} else {
-			session.setAttribute(ATT_SESSION_USER, null);
+			session.setAttribute(ATT_COMPANY_SESSION, null);
 
 			/* Stockage du formulaire et du bean dans l'objet request */
 			request.setAttribute(ATT_FORM, form);
