@@ -20,6 +20,7 @@ public class Signin extends HttpServlet {
 	public static final String	ATT_COMPANY			= "company";
 	public static final String	ATT_FORM			= "form";
 	public static final String	VUE					= "/WEB-INF/signin.jsp";
+	public static final String	SUCCES_VUE			= "/WEB-INF/signinSucces.jsp";
 
 	private CompanyDao			companyDao;
 
@@ -44,6 +45,11 @@ public class Signin extends HttpServlet {
 		request.setAttribute(ATT_FORM, form);
 		request.setAttribute(ATT_COMPANY, utilisateur);
 
-		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		if (!form.getErrors().isEmpty()) {
+			this.getServletContext().getRequestDispatcher(SUCCES_VUE).forward(request, response);
+		} else {
+			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		}
+
 	}
 }

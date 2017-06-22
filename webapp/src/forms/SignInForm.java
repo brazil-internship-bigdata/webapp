@@ -96,7 +96,7 @@ public final class SignInForm extends Form {
 
 	private void treatResponsible1Name(String name, Company company) {
 		try {
-			checkName(name);
+			checkProjectResponsible(name);
 		} catch (FormValidationException e) {
 			setErreur(FIELD_RESPONSIBLE_1_NAME, e.getMessage());
 		}
@@ -123,7 +123,7 @@ public final class SignInForm extends Form {
 
 	private void treatResponsible2Name(String name, Company company) {
 		try {
-			checkName(name);
+			checkProjectResponsible(name);
 		} catch (FormValidationException e) {
 			setErreur(FIELD_RESPONSIBLE_2_NAME, e.getMessage());
 		}
@@ -132,9 +132,9 @@ public final class SignInForm extends Form {
 
 	private void treatProjectResponsible(String name, Company company) {
 		try {
-			checkName(name);
+			checkProjectResponsible(name);
 		} catch (FormValidationException e) {
-			setErreur(FIELD_RESPONSIBLE_2_NAME, e.getMessage());
+			setErreur(FIELD_PROJECT_RESPONSIBLE, e.getMessage());
 		}
 		company.setProjectResponsible(name);
 	}
@@ -198,8 +198,10 @@ public final class SignInForm extends Form {
 
 	}
 
-	private void checkName(String name) throws FormValidationException {
-		// TODO Auto-generated method stub
+	private void checkProjectResponsible(String name) throws FormValidationException {
+		if (name != null && name.length() < 3) {
+			throw new FormValidationException("Project responsible must contains at least 3 characters.");
+		}
 
 	}
 
@@ -213,7 +215,7 @@ public final class SignInForm extends Form {
 
 	}
 
-	private void checkCompanyFullName(String name) throws FormValidationException {
+	private void checkCompanyName(String name) throws FormValidationException {
 		if (name != null) {
 			if (name.length() < 3) {
 				throw new FormValidationException("Company name must contains at least 3 characters.");
@@ -248,7 +250,7 @@ public final class SignInForm extends Form {
 		}
 	}
 
-	private void checkCompanyName(String name) throws FormValidationException {
+	private void checkCompanyFullName(String name) throws FormValidationException {
 		if (name != null && name.length() < 3) {
 			throw new FormValidationException("Company name must contains at least 3 characters.");
 		}

@@ -67,7 +67,7 @@
                 <br />
                 
                 <label for="project_responsible">Project responsible <span class="requis">*</span></label>
-                <input type="text" id="project_responsible" name="responsible_1_name" value="<c:out value="${company.projectResponsible}"/>" size="20" maxlength="60" />
+                <input type="text" id="project_responsible" name="project_responsible" value="<c:out value="${company.projectResponsible}"/>" size="20" maxlength="60" />
                 <span class="erreur">${form.errors['project_responsible']}</span>
                 <br />
                 
