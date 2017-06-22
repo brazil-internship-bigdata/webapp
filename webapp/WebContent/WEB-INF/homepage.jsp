@@ -4,12 +4,12 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Accès restreint</title>
+        <title>Homepage</title>
          <link type="text/css" rel="stylesheet" href='<c:url value="/inc/style.css"/>'>
     </head>
     <body>
-        <p>Vous êtes connecté(e) avec  ${sessionScope.companySession.companyName}, vous avez bien accès à l'espace restreint.</p>
+        <p>You are connected with  ${sessionScope.companySession.companyName}, you have access to the private space.</p>
         
-        <p><a href='<c:url value="logout"/>'>Deconnexion</a></p>
+        <p><a href='<c:url value="logout"/>'>Logout</a></p>
     </body>
 </html>

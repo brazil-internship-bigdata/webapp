@@ -11,16 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import beans.Company;
 import dao.CompanyDao;
 import dao.DAOFactory;
-import forms.SignInForm;
+import forms.SignUpForm;
 
 @SuppressWarnings("serial")
-@WebServlet("/signin")
-public class Signin extends HttpServlet {
+@WebServlet("/signup")
+public class Signup extends HttpServlet {
 	public static final String	CONF_DAO_FACTORY	= "daofactory";
 	public static final String	ATT_COMPANY			= "company";
 	public static final String	ATT_FORM			= "form";
-	public static final String	VUE					= "/WEB-INF/signin.jsp";
-	public static final String	SUCCES_VUE			= "/WEB-INF/signinSucces.jsp";
+	public static final String	VIEW					= "/WEB-INF/signup.jsp";
 
 	private CompanyDao			companyDao;
 
@@ -31,25 +30,25 @@ public class Signin extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Affichage de la page d'inscription */
-		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		this.getServletContext().getRequestDispatcher(VIEW).forward(request, response);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Préparation de l'objet formulaire */
-		SignInForm form = new SignInForm(companyDao);
+		SignUpForm form = new SignUpForm(companyDao);
 
 		/* Traitement de la requête et récupération du bean en résultant */
-		Company utilisateur = form.signInCompany(request);
+		Company company = form.signUpCompany(request);
 
 		/* Stockage du formulaire et du bean dans l'objet request */
 		request.setAttribute(ATT_FORM, form);
 
 		if (!form.getErrors().isEmpty()) {
-			request.setAttribute(ATT_COMPANY, utilisateur);
+			request.setAttribute(ATT_COMPANY, company);
 		} else {
 			request.setAttribute(ATT_COMPANY, null);
 		}
-		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		this.getServletContext().getRequestDispatcher(VIEW).forward(request, response);
 
 	}
 }

@@ -6,7 +6,7 @@ import beans.Company;
 import dao.CompanyDao;
 import dao.DAOException;
 
-public final class SignInForm extends Form {
+public final class SignUpForm extends Form {
 	private static final String	SIGNIN_FAIL_LONG			= "Echec de l'inscription : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
 	private static final String	SIGNIN_FAIL					= "Echec de l'inscription.";
 	private static final String	SIGNIN_SUCCESSFUL			= "Succes de l'inscription.";
@@ -27,11 +27,11 @@ public final class SignInForm extends Form {
 
 	// private static final String ENCRYPTION_ALGORITHM = "SHA-256";
 
-	public SignInForm(CompanyDao companyDao) {
+	public SignUpForm(CompanyDao companyDao) {
 		super(companyDao);
 	}
 
-	public Company signInCompany(HttpServletRequest request) {
+	public Company signUpCompany(HttpServletRequest request) {
 
 		String companyName = getValeurChamp(request, FIELD_COMPANY_NAME);
 		String companyFullName = getValeurChamp(request, FIELD_COMPANY_FULL_NAME);

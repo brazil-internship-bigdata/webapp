@@ -31,11 +31,11 @@ form input.sansLabel {
     margin-left: 200px;
 }
 
-form .requis {
+form .require {
     color: #c00;
 }
 
-.erreur {
+.error {
 	color : red;
 }
 
