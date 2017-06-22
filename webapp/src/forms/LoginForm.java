@@ -6,9 +6,10 @@ import beans.Company;
 import dao.CompanyDao;
 
 public final class LoginForm extends Form {
-	private static final String	CHAMP_EMAIL			= "email";
-	private static final String	CHAMP_PASS			= "motdepasse";
-	private static final String	CONNECTION_ERROR	= "compteInconnu";
+	private static final String	FIELD_COMPANY_NAME		= "company_name";
+	private static final String	FIELD_PASSWORD_COMPANY	= "password_company";
+
+	private static final String	CONNECTION_ERROR		= "compteInconnu";
 
 	public LoginForm(CompanyDao companyDao) {
 		super(companyDao);
@@ -16,29 +17,29 @@ public final class LoginForm extends Form {
 
 	public Company loginCompany(HttpServletRequest request) {
 		/* Récupération des champs du formulaire */
-		String email = getValeurChamp(request, CHAMP_EMAIL);
-		String password = getValeurChamp(request, CHAMP_PASS);
+		String companyName = getValeurChamp(request, FIELD_COMPANY_NAME);
+		String passwordCompany = getValeurChamp(request, FIELD_PASSWORD_COMPANY);
 
 		Company company = new Company();
 
 		/* Validation du champ email. */
 		try {
-			checkEmail(email);
+			checkCompanyName(passwordCompany);
 		} catch (Exception e) {
-			setErreur(CHAMP_EMAIL, e.getMessage());
+			setErreur(FIELD_COMPANY_NAME, e.getMessage());
 		}
-		company.setEmail(email);
+		company.setCompanyName(companyName);
 
 		/* Validation du champ mot de passe. */
 		try {
-			checkPassword(password);
+			checkPassword(passwordCompany);
 		} catch (Exception e) {
-			setErreur(CHAMP_PASS, e.getMessage());
+			setErreur(FIELD_PASSWORD_COMPANY, e.getMessage());
 		}
-		company.setMotDePasse(password);
+		company.setPasswordCompany(passwordCompany);
 
-		if (companyDao.loginCheck(company.getEmail(), company.getMotDePasse())) {
-			company = companyDao.find(email);
+		if (companyDao.loginCheck(company.getCompanyName(), company.getPasswordCompany())) {
+			company = companyDao.find(company.getCompanyName());
 		} else {
 			setErreur(CONNECTION_ERROR, "Email or password don't match");
 		}
@@ -52,6 +53,12 @@ public final class LoginForm extends Form {
 		}
 
 		return company;
+	}
+
+	private void checkCompanyName(String name) throws FormValidationException {
+		if (name != null && name.length() < 3) {
+			throw new FormValidationException("Company name must contains at least 3 characters.");
+		}
 	}
 
 }

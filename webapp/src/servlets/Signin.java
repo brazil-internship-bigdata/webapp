@@ -17,7 +17,7 @@ import forms.SignInForm;
 @WebServlet("/signin")
 public class Signin extends HttpServlet {
 	public static final String	CONF_DAO_FACTORY	= "daofactory";
-	public static final String	ATT_USER			= "utilisateur";
+	public static final String	ATT_COMPANY			= "company";
 	public static final String	ATT_FORM			= "form";
 	public static final String	VUE					= "/WEB-INF/signin.jsp";
 
@@ -42,7 +42,7 @@ public class Signin extends HttpServlet {
 
 		/* Stockage du formulaire et du bean dans l'objet request */
 		request.setAttribute(ATT_FORM, form);
-		request.setAttribute(ATT_USER, utilisateur);
+		request.setAttribute(ATT_COMPANY, utilisateur);
 
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}

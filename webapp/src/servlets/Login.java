@@ -19,7 +19,7 @@ import forms.LoginForm;
 public class Login extends HttpServlet {
 	public static final String	CONF_DAO_FACTORY	= "daofactory";
 	public static final String	HOMEPAGE			= "homepage";
-	public static final String	ATT_USER			= "utilisateur";
+	public static final String	ATT_COMPANY			= "company";
 	public static final String	ATT_FORM			= "form";
 	public static final String	ATT_SESSION_USER	= "sessionUtilisateur";
 	public static final String	VUE					= "/WEB-INF/login.jsp";
@@ -59,7 +59,7 @@ public class Login extends HttpServlet {
 
 			/* Stockage du formulaire et du bean dans l'objet request */
 			request.setAttribute(ATT_FORM, form);
-			request.setAttribute(ATT_USER, company);
+			request.setAttribute(ATT_COMPANY, company);
 
 			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		}

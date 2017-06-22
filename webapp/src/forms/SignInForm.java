@@ -10,7 +10,6 @@ public final class SignInForm extends Form {
 	private static final String	SIGNIN_FAIL_LONG			= "Echec de l'inscription : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
 	private static final String	SIGNIN_FAIL					= "Echec de l'inscription.";
 	private static final String	SIGNIN_SUCCESSFUL			= "Succes de l'inscription.";
-	private static final String	CHAMP_EMAIL					= "email";
 
 	private static final String	FIELD_COMPANY_NAME			= "company_name";
 	private static final String	FIELD_COMPANY_FULL_NAME		= "company_full_name";
@@ -25,10 +24,6 @@ public final class SignInForm extends Form {
 	private static final String	FIELD_PROJECT_RESPONSIBLE	= "project_responsible";
 	private static final String	FIELD_SUBMISSION_TYPE		= "submission_type";
 	private static final String	FIELD_FILE_TYPE				= "file_type";
-
-	private static final String	CHAMP_PASS					= "password";
-	private static final String	CHAMP_CONF					= "confirmation";
-	private static final String	CHAMP_NAME					= "nom";
 
 	// private static final String ENCRYPTION_ALGORITHM = "SHA-256";
 
@@ -81,42 +76,95 @@ public final class SignInForm extends Form {
 		return company;
 	}
 
-	/*
-	 * Appel Ã la validation de l'adresse email reÃ§ue et initialisation de la
-	 * propriÃ©tÃ© email du bean
-	 */
-	private void treatEmail(String email, Company company) {
+	private void treatResponsible1Email(String email, Company company) {
 		try {
 			checkEmail(email);
 		} catch (FormValidationException e) {
-			setErreur(CHAMP_EMAIL, e.getMessage());
+			setErreur(FIELD_RESPONSIBLE_1_EMAIL, e.getMessage());
 		}
-		company.setEmail(email);
+		company.setResponsible1Email(email);
 	}
 
-	/*
-	 * Appel Ã la validation des mots de passe reÃ§us, chiffrement du mot de
-	 * passe et initialisation de la propriÃ©tÃ© motDePasse du bean
-	 */
+	private void treatResponsible1Phone(String phone, Company company) {
+		try {
+			checkPhone(phone);
+		} catch (FormValidationException e) {
+			setErreur(FIELD_RESPONSIBLE_1_PHONE, e.getMessage());
+		}
+		company.setResponsible1Phone(phone);
+	}
+
+	private void treatResponsible1Name(String name, Company company) {
+		try {
+			checkName(name);
+		} catch (FormValidationException e) {
+			setErreur(FIELD_RESPONSIBLE_1_NAME, e.getMessage());
+		}
+		company.setResponsible1Name(name);
+	}
+
+	private void treatResponsible2Email(String email, Company company) {
+		try {
+			checkEmail(email);
+		} catch (FormValidationException e) {
+			setErreur(FIELD_RESPONSIBLE_2_EMAIL, e.getMessage());
+		}
+		company.setResponsible2Email(email);
+	}
+
+	private void treatResponsible2Phone(String phone, Company company) {
+		try {
+			checkPhone(phone);
+		} catch (FormValidationException e) {
+			setErreur(FIELD_RESPONSIBLE_2_PHONE, e.getMessage());
+		}
+		company.setResponsible2Phone(phone);
+	}
+
+	private void treatResponsible2Name(String name, Company company) {
+		try {
+			checkName(name);
+		} catch (FormValidationException e) {
+			setErreur(FIELD_RESPONSIBLE_2_NAME, e.getMessage());
+		}
+		company.setResponsible2Name(name);
+	}
+
+	private void treatProjectResponsible(String name, Company company) {
+		try {
+			checkName(name);
+		} catch (FormValidationException e) {
+			setErreur(FIELD_RESPONSIBLE_2_NAME, e.getMessage());
+		}
+		company.setProjectResponsible(name);
+	}
+
+	private void treatSubmissionType(String submissionType, Company company) {
+		try {
+			checkSubmissionType(submissionType);
+		} catch (FormValidationException e) {
+			setErreur(FIELD_SUBMISSION_TYPE, e.getMessage());
+		}
+		company.setSubmissionType(submissionType);
+	}
+
+	private void treatFileType(String fileType, Company company) {
+		try {
+			checkFileType(fileType);
+		} catch (FormValidationException e) {
+			setErreur(FIELD_FILE_TYPE, e.getMessage());
+		}
+		company.setFileType(fileType);
+	}
+
 	private void treatPassword(String password, String confirmation, Company company) {
 		try {
 			checkPassword(password, confirmation);
 		} catch (FormValidationException e) {
-			setErreur(CHAMP_PASS, e.getMessage());
-			setErreur(CHAMP_CONF, null);
+			setErreur(FIELD_PASSWORD_COMPANY, e.getMessage());
+			setErreur(FIELD_PASSWORD_CONFIRMATION, null);
 		}
 
-		/*
-		 * Utilisation de la bibliothÃ¨que Jasypt pour chiffrer le mot de passe
-		 * efficacement.
-		 * 
-		 * L'algorithme SHA-256 est ici utilisÃ©, avec par dÃ©faut un salage
-		 * alÃ©atoire et un grand nombre d'itÃ©rations de la fonction de
-		 * hashage.
-		 * 
-		 * La String retournÃ©e est de longueur 56 et contient le hash en
-		 * Base64.
-		 */
 		// TODO Security
 		// ConfigurablePasswordEncryptor passwordEncryptor = new
 		// ConfigurablePasswordEncryptor();
@@ -124,23 +172,58 @@ public final class SignInForm extends Form {
 		// passwordEncryptor.setPlainDigest(false);
 		// String encryptPassword = passwordEncryptor.encryptPassword(password);
 
-		company.setMotDePasse(password);
+		company.setPasswordCompany(password);
 	}
 
-	/*
-	 * Appel Ã la validation du nom reÃ§u et initialisation de la propriÃ©tÃ©
-	 * nom du bean
-	 */
 	private void treatCompanyName(String name, Company company) {
 		try {
 			checkCompanyName(name);
 		} catch (FormValidationException e) {
-			setErreur(CHAMP_NAME, e.getMessage());
+			setErreur(FIELD_COMPANY_NAME, e.getMessage());
 		}
-		company.setNom(name);
+		company.setCompanyName(name);
 	}
 
-	/* Validation de l'adresse email */
+	private void treatCompanyFullName(String name, Company company) {
+		try {
+			checkCompanyFullName(name);
+		} catch (FormValidationException e) {
+			setErreur(FIELD_COMPANY_FULL_NAME, e.getMessage());
+		}
+		company.setCompanyFullName(name);
+	}
+
+	private void checkSubmissionType(String submissionType) throws FormValidationException {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void checkName(String name) throws FormValidationException {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void checkPhone(String phone) throws FormValidationException {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void checkFileType(String fileType) throws FormValidationException {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void checkCompanyFullName(String name) throws FormValidationException {
+		if (name != null) {
+			if (name.length() < 3) {
+				throw new FormValidationException("Company name must contains at least 3 characters.");
+			}
+			if (name.length() > 10) {
+				throw new FormValidationException("Company name must contains at more 10 characters.");
+			}
+		}
+	}
+
 	protected void checkEmail(String email) throws FormValidationException {
 		if (email != null) {
 			if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
@@ -153,7 +236,6 @@ public final class SignInForm extends Form {
 		}
 	}
 
-	/* Validation des mots de passe */
 	private void checkPassword(String password, String confirmation) throws FormValidationException {
 		if (password != null && confirmation != null) {
 			if (!password.equals(confirmation)) {
@@ -166,7 +248,6 @@ public final class SignInForm extends Form {
 		}
 	}
 
-	/* Validation du nom */
 	private void checkCompanyName(String name) throws FormValidationException {
 		if (name != null && name.length() < 3) {
 			throw new FormValidationException("Company name must contains at least 3 characters.");
