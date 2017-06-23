@@ -1,22 +1,24 @@
 package beans;
 
+import java.sql.Timestamp;
+
 public class Company {
 
-	private Long	id;
-	private String	companyName;
-	private String	companyFullName;
-	private String	passwordCompany;
-	private String	responsible1Email;
-	private String	responsible1Name;
-	private String	responsible1Phone;
-	private String	responsible2Email;
-	private String	responsible2Name;
-	private String	responsible2Phone;
-	private String	projectResponsible;
-	private String	submissionType;
-	private String	fileType;
-	private String	dataDescription;
-	private String	signInDate;
+	private Long		id;
+	private String		companyName;
+	private String		companyFullName;
+	private String		passwordCompany;
+	private String		responsible1Email;
+	private String		responsible1Name;
+	private String		responsible1Phone;
+	private String		responsible2Email;
+	private String		responsible2Name;
+	private String		responsible2Phone;
+	private String		projectResponsible;
+	private String		submissionType;
+	private String		fileType;
+	private String		dataDescription;
+	private Timestamp	signInDate;
 
 	public Long getId() {
 		return id;
@@ -122,11 +124,11 @@ public class Company {
 		this.dataDescription = dataDescription;
 	}
 
-	public String getSignInDate() {
+	public Timestamp getSignInDate() {
 		return signInDate;
 	}
 
-	public void setSignInDate(String signInDate) {
+	public void setSignInDate(Timestamp signInDate) {
 		this.signInDate = signInDate;
 	}
 

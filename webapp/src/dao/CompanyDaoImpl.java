@@ -150,7 +150,7 @@ public class CompanyDaoImpl implements CompanyDao {
 		company.setSubmissionType(resultSet.getString("submission_type"));
 		company.setFileType(resultSet.getString("file_type"));
 		company.setDataDescription(resultSet.getString("data_description"));
-		company.setSignInDate("sign_in_date");
+		company.setSignInDate(resultSet.getTimestamp("sign_in_date"));
 
 		System.out.println("Map" + company.getCompanyName());
 
