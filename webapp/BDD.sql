@@ -30,17 +30,19 @@ CREATE TABLE bdd_sdzee.Company (
 -- filetype : `csv`, `excel`
 
 
-CREATE TABLE bdd_sdzee.FileUpload (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    filename VARCHAR(60) NOT NULL,
-    type VARCHAR(10) NOT NULL,
-    id_company INT(11),
-    dateUpload DATETIME,
-    PRIMARY KEY (id),
-    FOREIGN KEY (id_company)
-        REFERENCES Company (id)
-        ON DELETE CASCADE ON UPDATE CASCADE
-)  ENGINE=INNODB;
+CREATE TABLE bdd_sdzee.FileUpload (     
+id INT(11) NOT NULL AUTO_INCREMENT,     
+filename VARCHAR(60) NOT NULL,     
+file_type VARCHAR(10) NOT NULL,     
+id_company INT(11),    
+dateUpload DATETIME,    
+size_file INT NOT NULL,     
+PRIMARY KEY (id),    
+FOREIGN KEY (id_company)        
+REFERENCES Company (id)        
+ON DELETE CASCADE ON UPDATE CASCADE
+)  ENGINE=INNODB
+
 
     
  INSERT INTO `bdd_sdzee`.`Company` (
@@ -106,3 +108,34 @@ VALUES(
     'csv',
     'User of the second bus company of Floripa',
     NOW());
+
+    
+INSERT INTO `bdd_sdzee`.`FileUpload`
+(
+`filename`,
+`file_type`,
+`id_company`,
+`dateUpload`,
+`size_file`)
+VALUES
+(
+'bus1-1.csv',
+'csv',
+1,
+NOW(),
+50); 
+
+INSERT INTO `bdd_sdzee`.`FileUpload`
+(
+`filename`,
+`file_type`,
+`id_company`,
+`dateUpload`,
+`size_file`)
+VALUES
+(
+'bus2-1.csv',
+'csv',
+2,
+NOW(),
+100);
