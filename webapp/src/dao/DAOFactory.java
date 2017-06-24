@@ -12,13 +12,13 @@ import com.jolbox.bonecp.BoneCPConfig;
 
 public class DAOFactory {
 
-	private static final String	FICHIER_PROPERTIES			= "/dao/dao.properties";
-	private static final String	PROPERTY_URL				= "url";
-	private static final String	PROPERTY_DRIVER				= "driver";
-	private static final String	PROPERTY_NOM_UTILISATEUR	= "username";
-	private static final String	PROPERTY_MOT_DE_PASSE		= "password";
+	private static final String	FILE_PROPERTIES		= "/dao/dao.properties";
+	private static final String	PROPERTY_URL		= "url";
+	private static final String	PROPERTY_DRIVER		= "driver";
+	private static final String	PROPERTY_USERNAME	= "username";
+	private static final String	PROPERTY_PASSWORD	= "password";
 
-	/* package */BoneCP			connectionPool				= null;
+	/* package */BoneCP			connectionPool		= null;
 
 	/* package */ DAOFactory(BoneCP connectionPool) {
 		this.connectionPool = connectionPool;
@@ -37,22 +37,22 @@ public class DAOFactory {
 		BoneCP connectionPool = null;
 
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		InputStream fichierProperties = classLoader.getResourceAsStream(FICHIER_PROPERTIES);
+		InputStream fichierProperties = classLoader.getResourceAsStream(FILE_PROPERTIES);
 
 		if (fichierProperties == null) {
-			throw new DAOConfigurationException("The file properties " + FICHIER_PROPERTIES + " is not found.");
+			throw new DAOConfigurationException("The file properties " + FILE_PROPERTIES + " is not found.");
 		}
 
 		try {
 			properties.load(fichierProperties);
 			url = properties.getProperty(PROPERTY_URL);
 			driver = properties.getProperty(PROPERTY_DRIVER);
-			username = properties.getProperty(PROPERTY_NOM_UTILISATEUR);
-			password = properties.getProperty(PROPERTY_MOT_DE_PASSE);
+			username = properties.getProperty(PROPERTY_USERNAME);
+			password = properties.getProperty(PROPERTY_PASSWORD);
 		} catch (FileNotFoundException e) {
-			throw new DAOConfigurationException("The file properties " + FICHIER_PROPERTIES + " is not found.", e);
+			throw new DAOConfigurationException("The file properties " + FILE_PROPERTIES + " is not found.", e);
 		} catch (IOException e) {
-			throw new DAOConfigurationException("Impossible to load le fichier properties " + FICHIER_PROPERTIES, e);
+			throw new DAOConfigurationException("Impossible to load le fichier properties " + FILE_PROPERTIES, e);
 		}
 
 		try {
@@ -102,5 +102,9 @@ public class DAOFactory {
 	 */
 	public CompanyDao getCompanyDao() {
 		return new CompanyDaoImpl(this);
+	}
+
+	public FileUploadDao geFileUploadDao() {
+		return new FileUploadDaoImpl(this);
 	}
 }
