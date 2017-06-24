@@ -9,7 +9,7 @@ public class FileUpload {
 	private String		fileType;
 	private Long		idComapny;
 	private Timestamp	dateUpload;
-	private Integer		size_file;
+	private Long		size_file;
 
 	public Long getId() {
 		return id;
@@ -51,11 +51,11 @@ public class FileUpload {
 		this.dateUpload = dateUpload;
 	}
 
-	public Integer getSize_file() {
+	public Long getSize_file() {
 		return size_file;
 	}
 
-	public void setSize_file(Integer size_file) {
+	public void setSizeFile(Long size_file) {
 		this.size_file = size_file;
 	}
 
