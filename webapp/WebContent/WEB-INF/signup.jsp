@@ -8,7 +8,7 @@
          <link type="text/css" rel="stylesheet" href='<c:url value="/inc/style.css"/>'>
     </head>
     <body>
-    	<form method="post" action="signin">
+    	<form method="post" action="signup">
     	  <fieldset>
                 <legend>Signup</legend>
                 <p>Please sign up with this form </p>
@@ -81,7 +81,7 @@
                 <span class="error">${form.errors['file_type']}</span>
                 <br />
                 
-                   <input type="submit" value="Inscription" class="sansLabel" />
+                   <input type="submit" value="Sign up" class="sansLabel" />
                 <br />
                 
                 <p class="${empty form.errors ? 'succes' : 'error'}">${form.results}</p>

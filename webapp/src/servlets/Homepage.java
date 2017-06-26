@@ -35,7 +35,7 @@ public class Homepage extends HttpServlet {
 
 	public void init() throws ServletException {
 		/* Récupération d'une instance de notre DAO Utilisateur */
-		this.fileUploadDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).geFileUploadDao();
+		this.fileUploadDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getFileUploadDao();
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

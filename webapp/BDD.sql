@@ -41,7 +41,7 @@ PRIMARY KEY (id),
 FOREIGN KEY (id_company)        
 REFERENCES Company (id)        
 ON DELETE CASCADE ON UPDATE CASCADE
-)  ENGINE=INNODB
+)  ENGINE=INNODB;
 
 
     

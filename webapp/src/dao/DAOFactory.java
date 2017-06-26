@@ -104,7 +104,7 @@ public class DAOFactory {
 		return new CompanyDaoImpl(this);
 	}
 
-	public FileUploadDao geFileUploadDao() {
+	public FileUploadDao getFileUploadDao() {
 		return new FileUploadDaoImpl(this);
 	}
 }

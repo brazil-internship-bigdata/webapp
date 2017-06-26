@@ -1,22 +1,44 @@
 package servlets;
 
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import org.glassfish.jersey.media.multipart.FormDataParam;
+
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
+
+import beans.FileUpload;
+import dao.DAOFactory;
+import dao.FileUploadDao;
 
 /**
  * @author Michal Gajdos
  */
 @Path("upload")
 public class UploadResource {
+
+	public static final String	CONF_DAO_FACTORY	= "daofactory";
+
+	private FileUploadDao		fileUploadDAO;
+
+	@Context
+	ServletContext				contexte;
+
+	public void init() throws ServletException {
+		/* Récupération d'une instance de notre DAO Utilisateur */
+		this.fileUploadDAO = ((DAOFactory) contexte.getAttribute(CONF_DAO_FACTORY)).getFileUploadDao();
+	}
 
 	@GET
 	@Produces("text/plain")
@@ -44,8 +66,17 @@ public class UploadResource {
 
 		filename += dateFormat.format(date) + ".csv";
 
-		if (storeFile(APIApplication.CSV_FILE_PATH + filename, data))
+		FileUpload fileUpload = new FileUpload();
+		fileUpload.setDateUpload(new Timestamp(new Date().getTime()));
+		fileUpload.setFilename(filename);
+		fileUpload.setFileType(".csv");
+		fileUpload.setSizeFile((long) data.length());
+
+		if (storeFile(APIApplication.CSV_FILE_PATH + filename, data)) {
+			fileUploadDAO.create(fileUpload);
 			return "CSV File saved";
+		}
+
 		else
 			return "Error during saving csv file";
 	}
@@ -54,8 +85,16 @@ public class UploadResource {
 	@Path("ktr")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public String postKTR(@FormDataParam("file") String data, @FormDataParam("file") FormDataContentDisposition d) {
-		if (storeFile(APIApplication.KTR_FILE_PATH + d.getFileName(), data))
+		if (storeFile(APIApplication.KTR_FILE_PATH + d.getFileName(), data)) {
+
+			FileUpload fileUpload = new FileUpload();
+			fileUpload.setDateUpload(new Timestamp(new Date().getTime()));
+			fileUpload.setFilename(d.getFileName());
+			fileUpload.setFileType(".ktr");
+			fileUpload.setSizeFile((long) data.length());
 			return "KTR File saved";
+		}
+
 		else
 			return "Error during saving ktr file";
 	}
