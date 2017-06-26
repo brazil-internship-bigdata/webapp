@@ -8,8 +8,8 @@ public interface FileUploadDao {
 
 	public void create(FileUpload company) throws DAOException;
 
-	public FileUpload find(String email) throws DAOException;
+	public FileUpload find(Long id) throws DAOException;
 
-	public List<FileUpload> findAll(String email) throws DAOException;
+	public List<FileUpload> findAllByCompany(Long id_company) throws DAOException;
 
 }

@@ -4,15 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import beans.FileUpload;
 
 public class FileUploadDaoImpl implements FileUploadDao {
 
-	private static final String	SQL_INSERT		= "INSERT INTO `bdd_sdzee`.`FileUpload` (`filename`,`file_type`,`id_company`,`dateUpload`,`size_file`)VALUES( ?, ?, ?, NOW(), ?);";
+	private static final String	SQL_INSERT		= "INSERT INTO FileUpload` (`filename`,`file_type`,`id_company`,`dateUpload`,`size_file`)VALUES( ?, ?, ?, NOW(), ?);";
 
-	private static final String	SQL_BY_COMPANY	= "SELECT `FileUpload`.`id`, `FileUpload`.`filename`,  `FileUpload`.`file_type`,`FileUpload`.`id_company`,   `FileUpload`.`dateUpload`, `FileUpload`.`size_file`		FROM `bdd_sdzee`.`FileUpload` WHERE  `FileUpload`.`id_company`= 1;";
+	private static final String	SQL_BY_COMPANY	= "SELECT `FileUpload`.`id`, `FileUpload`.`filename`,  `FileUpload`.`file_type`,`FileUpload`.`id_company`,   `FileUpload`.`dateUpload`, `FileUpload`.`size_file` FROM `FileUpload` WHERE  `FileUpload`.`id_company`= ?;";
 
 	private DAOFactory			daoFactory;
 
@@ -51,15 +52,38 @@ public class FileUploadDaoImpl implements FileUploadDao {
 	}
 
 	@Override
-	public FileUpload find(String email) throws DAOException {
+	public FileUpload find(Long id) throws DAOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<FileUpload> findAll(String email) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FileUpload> findAllByCompany(Long id_company) throws DAOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		List<FileUpload> fileUploads = new ArrayList<FileUpload>();
+
+		try {
+			/* RÃ©cupÃ©ration d'une connexion depuis la Factory */
+			connection = daoFactory.getConnection();
+			/*
+			 * PrÃ©paration de la requÃªte avec les objets passÃ©s en arguments
+			 * (ici, uniquement une adresse email) et exÃ©cution.
+			 */
+			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_BY_COMPANY, false, id_company);
+			resultSet = preparedStatement.executeQuery();
+			/* Parcours de la ligne de donnÃ©es retournÃ©e dans le ResultSet */
+			if (resultSet.next()) {
+				fileUploads.add(map(resultSet));
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOTools.silentCloses(resultSet, preparedStatement, connection);
+		}
+
+		return fileUploads;
 	}
 
 	private static FileUpload map(ResultSet resultSet) throws SQLException {

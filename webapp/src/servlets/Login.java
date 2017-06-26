@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import beans.Company;
 import dao.CompanyDao;
 import dao.DAOFactory;
+import dao.FileUploadDao;
 import forms.LoginForm;
 
 @SuppressWarnings("serial")
@@ -26,10 +27,12 @@ public class Login extends HttpServlet {
 	public static final String	ACCES_RESTREINT		= "/homepage";
 
 	private CompanyDao			companyDao;
+	private FileUploadDao		fileUploadDao;
 
 	public void init() throws ServletException {
 		/* Récupération d'une instance de notre DAO Utilisateur */
 		this.companyDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getCompanyDao();
+		this.fileUploadDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).geFileUploadDao();
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
