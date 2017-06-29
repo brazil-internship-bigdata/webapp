@@ -30,10 +30,6 @@ public abstract class Form {
 		errors.put(champ, message);
 	}
 
-	/*
-	 * MÃ©thode utilitaire qui retourne null si un champ est vide, et son
-	 * contenu sinon.
-	 */
 	protected static String getValeurChamp(HttpServletRequest request, String nomChamp) {
 		String valeur = request.getParameter(nomChamp);
 		if (valeur == null || valeur.trim().length() == 0) {
@@ -49,9 +45,6 @@ public abstract class Form {
 		}
 	}
 
-	/**
-	 * Valide le mot de passe saisi.
-	 */
 	protected void checkPassword(String password) throws Exception {
 		if (password != null) {
 			if (password.length() < 3) {
@@ -59,6 +52,12 @@ public abstract class Form {
 			}
 		} else {
 			throw new Exception("Please enter a password.");
+		}
+	}
+
+	protected void checkCompanyName(String name) throws FormValidationException {
+		if (name != null && name.length() < 3) {
+			throw new FormValidationException("Company name must contains at least 3 characters.");
 		}
 	}
 }

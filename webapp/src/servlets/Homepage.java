@@ -45,13 +45,11 @@ public class Homepage extends HttpServlet {
 		Company company = (Company) httpSession.getAttribute(ATT_COMPANY_SESSION);
 
 		if (company == null) {
-			System.out.println("redirect");
 			response.sendRedirect(this.getServletContext().getContextPath() + URL_REDIRECTION);
 		} else {
 
 			List<FileUpload> filesUpload = fileUploadDao.findAllByCompany(company.getId());
 			httpSession.setAttribute(ATT_FILES_SESSION, filesUpload);
-			System.out.println(httpSession);
 			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		}
 

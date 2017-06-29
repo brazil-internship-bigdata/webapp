@@ -19,17 +19,11 @@ public class CompanyDaoImpl implements CompanyDao {
 		this.daoFactory = daoFactory;
 	}
 
-	/*
-	 * ImplÃ©mentation de la mÃ©thode dÃ©finie dans l'interface UtilisateurDao
-	 */
 	@Override
 	public Company find(String companyName) throws DAOException {
 		return find(SQL_SELECT_BY_NAME, companyName);
 	}
 
-	/*
-	 * ImplÃ©mentation de la mÃ©thode dÃ©finie dans l'interface UtilisateurDao
-	 */
 	@Override
 	public void create(Company company) throws DAOException {
 		Connection connection = null;
@@ -73,16 +67,13 @@ public class CompanyDaoImpl implements CompanyDao {
 		boolean result = false;
 
 		try {
-			/* RÃ©cupÃ©ration d'une connexion depuis la Factory */
+
 			connection = daoFactory.getConnection();
-			/*
-			 * PrÃ©paration de la requÃªte avec les objets passÃ©s en arguments
-			 * (ici, uniquement une adresse email) et exÃ©cution.
-			 */
+
 			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_CONNECTION, false, companyName,
 					password);
 			resultSet = preparedStatement.executeQuery();
-			/* Parcours de la ligne de donnÃ©es retournÃ©e dans le ResultSet */
+
 			if (resultSet.next()) {
 				System.out.println("result ");
 				result = true;
@@ -96,11 +87,6 @@ public class CompanyDaoImpl implements CompanyDao {
 		return result;
 	}
 
-	/*
-	 * MÃ©thode gÃ©nÃ©rique utilisÃ©e pour retourner un utilisateur depuis la
-	 * base de donnÃ©es, correspondant Ã la requÃªte SQL donnÃ©e prenant en
-	 * paramÃ¨tres les objets passÃ©s en argument.
-	 */
 	private Company find(String sql, Object... objets) throws DAOException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -108,15 +94,11 @@ public class CompanyDaoImpl implements CompanyDao {
 		Company company = null;
 
 		try {
-			/* RÃ©cupÃ©ration d'une connexion depuis la Factory */
 			connection = daoFactory.getConnection();
-			/*
-			 * PrÃ©paration de la requÃªte avec les objets passÃ©s en arguments
-			 * (ici, uniquement une adresse email) et exÃ©cution.
-			 */
+
 			preparedStatement = DAOTools.initializePreparedStatement(connection, sql, false, objets);
 			resultSet = preparedStatement.executeQuery();
-			/* Parcours de la ligne de donnÃ©es retournÃ©e dans le ResultSet */
+
 			if (resultSet.next()) {
 				company = map(resultSet);
 			}
@@ -129,11 +111,6 @@ public class CompanyDaoImpl implements CompanyDao {
 		return company;
 	}
 
-	/*
-	 * Simple mÃ©thode utilitaire permettant de faire la correspondance (le
-	 * mapping) entre une ligne issue de la table des utilisateurs (un
-	 * ResultSet) et un bean Utilisateur.
-	 */
 	private static Company map(ResultSet resultSet) throws SQLException {
 		Company company = new Company();
 		company.setId(resultSet.getLong("id"));
@@ -152,9 +129,6 @@ public class CompanyDaoImpl implements CompanyDao {
 		company.setDataDescription(resultSet.getString("data_description"));
 		company.setSignInDate(resultSet.getTimestamp("sign_in_date"));
 
-		System.out.println("Map" + company.getCompanyName());
-
 		return company;
 	}
-
 }

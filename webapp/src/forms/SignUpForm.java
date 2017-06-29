@@ -216,17 +216,6 @@ public final class SignUpForm extends Form {
 
 	}
 
-	private void checkCompanyName(String name) throws FormValidationException {
-		if (name != null) {
-			if (name.length() < 3) {
-				throw new FormValidationException("Company name must contains at least 3 characters.");
-			}
-			if (name.length() > 10) {
-				throw new FormValidationException("Company name must contains at more 10 characters.");
-			}
-		}
-	}
-
 	protected void checkEmail(String email) throws FormValidationException {
 		if (email != null) {
 			if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {

@@ -11,9 +11,9 @@ import beans.FileUpload;
 
 public class FileUploadDaoImpl implements FileUploadDao {
 
-	private static final String	SQL_INSERT		= "INSERT INTO FileUpload` (`filename`,`file_type`,`id_company`,`dateUpload`,`size_file`)VALUES( ?, ?, ?, NOW(), ?);";
+	private static final String	SQL_INSERT		= "INSERT INTO FileUpload (`filename`,`file_type`,`id_company`,`dateUpload`,`size_file`)VALUES( ?, ?, ?, NOW(), ?);";
 
-	private static final String	SQL_BY_COMPANY	= "SELECT `FileUpload`.`id`, `FileUpload`.`filename`,  `FileUpload`.`file_type`,`FileUpload`.`id_company`,   `FileUpload`.`dateUpload`, `FileUpload`.`size_file` FROM `FileUpload` WHERE  `FileUpload`.`id_company`= ?;";
+	private static final String	SQL_BY_COMPANY	= "SELECT id, filename, file_type, id_company,   dateUpload, size_file FROM FileUpload WHERE  id_company = ? ;";
 
 	private DAOFactory			daoFactory;
 
@@ -30,7 +30,7 @@ public class FileUploadDaoImpl implements FileUploadDao {
 
 		try {
 			connection = daoFactory.getConnection();
-			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_INSERT, false,
+			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_INSERT, true,
 					fileUpload.getFilename(), fileUpload.getFileType(), fileUpload.getIdComapny(),
 					fileUpload.getSize_file());
 			int status = preparedStatement.executeUpdate();
@@ -53,7 +53,6 @@ public class FileUploadDaoImpl implements FileUploadDao {
 
 	@Override
 	public FileUpload find(Long id) throws DAOException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -65,16 +64,13 @@ public class FileUploadDaoImpl implements FileUploadDao {
 		List<FileUpload> fileUploads = new ArrayList<FileUpload>();
 
 		try {
-			/* RÃ©cupÃ©ration d'une connexion depuis la Factory */
+
 			connection = daoFactory.getConnection();
-			/*
-			 * PrÃ©paration de la requÃªte avec les objets passÃ©s en arguments
-			 * (ici, uniquement une adresse email) et exÃ©cution.
-			 */
+
 			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_BY_COMPANY, false, id_company);
 			resultSet = preparedStatement.executeQuery();
-			/* Parcours de la ligne de donnÃ©es retournÃ©e dans le ResultSet */
-			if (resultSet.next()) {
+
+			while (resultSet.next()) {
 				fileUploads.add(map(resultSet));
 			}
 		} catch (SQLException e) {

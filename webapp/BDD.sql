@@ -36,7 +36,7 @@ filename VARCHAR(60) NOT NULL,
 file_type VARCHAR(10) NOT NULL,     
 id_company INT(11),    
 dateUpload DATETIME,    
-size_file INT NOT NULL,     
+size_file INT (11)NOT NULL,     
 PRIMARY KEY (id),    
 FOREIGN KEY (id_company)        
 REFERENCES Company (id)        
