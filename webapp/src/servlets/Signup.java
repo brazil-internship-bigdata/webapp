@@ -19,7 +19,7 @@ public class Signup extends HttpServlet {
 	public static final String	CONF_DAO_FACTORY	= "daofactory";
 	public static final String	ATT_COMPANY			= "company";
 	public static final String	ATT_FORM			= "form";
-	public static final String	VIEW					= "/WEB-INF/signup.jsp";
+	public static final String	VIEW				= "/WEB-INF/signup.jsp";
 
 	private CompanyDao			companyDao;
 
@@ -51,4 +51,5 @@ public class Signup extends HttpServlet {
 		this.getServletContext().getRequestDispatcher(VIEW).forward(request, response);
 
 	}
+
 }

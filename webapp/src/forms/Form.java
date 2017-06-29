@@ -3,8 +3,6 @@ package forms;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import dao.CompanyDao;
 
 public abstract class Form {
@@ -28,15 +26,6 @@ public abstract class Form {
 
 	protected void setErreur(String champ, String message) {
 		errors.put(champ, message);
-	}
-
-	protected static String getValeurChamp(HttpServletRequest request, String nomChamp) {
-		String valeur = request.getParameter(nomChamp);
-		if (valeur == null || valeur.trim().length() == 0) {
-			return null;
-		} else {
-			return valeur;
-		}
 	}
 
 	protected void checkEmail(String email) throws Exception {

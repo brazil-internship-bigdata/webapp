@@ -17,8 +17,8 @@ public final class LoginForm extends Form {
 
 	public Company loginCompany(HttpServletRequest request) {
 
-		String companyName = getValeurChamp(request, FIELD_COMPANY_NAME);
-		String passwordCompany = getValeurChamp(request, FIELD_PASSWORD_COMPANY);
+		String companyName = request.getParameter(FIELD_COMPANY_NAME);
+		String passwordCompany = request.getParameter(FIELD_PASSWORD_COMPANY);
 
 		Company company = new Company();
 

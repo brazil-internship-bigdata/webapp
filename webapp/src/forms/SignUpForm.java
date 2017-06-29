@@ -1,15 +1,18 @@
 package forms;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Company;
 import dao.CompanyDao;
-import dao.DAOException;
 
 public final class SignUpForm extends Form {
-	private static final String	SIGNIN_FAIL_LONG			= "Echec de l'inscription : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
-	private static final String	SIGNIN_FAIL					= "Echec de l'inscription.";
-	private static final String	SIGNIN_SUCCESSFUL			= "Succes de l'inscription.";
+	private static final String	SIGNIN_FAIL_LONG			= "Intern error during sign up, please contact the administrator.";
+	private static final String	SIGNIN_FAIL					= "Sign up failed";
+	private static final String	SIGNIN_SUCCESSFUL			= "Sign up successful";
+
+	public static final String	STORAGE_FILE_PATH			= "/home/geourjoa/git/webapp/webapp/storage/";
 
 	private static final String	FIELD_COMPANY_NAME			= "company_name";
 	private static final String	FIELD_COMPANY_FULL_NAME		= "company_full_name";
@@ -33,19 +36,19 @@ public final class SignUpForm extends Form {
 
 	public Company signUpCompany(HttpServletRequest request) {
 
-		String companyName = getValeurChamp(request, FIELD_COMPANY_NAME);
-		String companyFullName = getValeurChamp(request, FIELD_COMPANY_FULL_NAME);
-		String passwordCompany = getValeurChamp(request, FIELD_PASSWORD_COMPANY);
-		String passwordConfirmation = getValeurChamp(request, FIELD_PASSWORD_CONFIRMATION);
-		String responsible1Email = getValeurChamp(request, FIELD_RESPONSIBLE_1_EMAIL);
-		String responsible1Phone = getValeurChamp(request, FIELD_RESPONSIBLE_1_PHONE);
-		String responsible1Name = getValeurChamp(request, FIELD_RESPONSIBLE_1_NAME);
-		String responsible2Email = getValeurChamp(request, FIELD_RESPONSIBLE_2_EMAIL);
-		String responsible2Phone = getValeurChamp(request, FIELD_RESPONSIBLE_2_PHONE);
-		String responsible2Name = getValeurChamp(request, FIELD_RESPONSIBLE_2_NAME);
-		String projectResponsible = getValeurChamp(request, FIELD_PROJECT_RESPONSIBLE);
-		String submissionType = getValeurChamp(request, FIELD_SUBMISSION_TYPE);
-		String fileType = getValeurChamp(request, FIELD_FILE_TYPE);
+		String companyName = request.getParameter(FIELD_COMPANY_NAME);
+		String companyFullName = request.getParameter(FIELD_COMPANY_FULL_NAME);
+		String passwordCompany = request.getParameter(FIELD_PASSWORD_COMPANY);
+		String passwordConfirmation = request.getParameter(FIELD_PASSWORD_CONFIRMATION);
+		String responsible1Email = request.getParameter(FIELD_RESPONSIBLE_1_EMAIL);
+		String responsible1Phone = request.getParameter(FIELD_RESPONSIBLE_1_PHONE);
+		String responsible1Name = request.getParameter(FIELD_RESPONSIBLE_1_NAME);
+		String responsible2Email = request.getParameter(FIELD_RESPONSIBLE_2_EMAIL);
+		String responsible2Phone = request.getParameter(FIELD_RESPONSIBLE_2_PHONE);
+		String responsible2Name = request.getParameter(FIELD_RESPONSIBLE_2_NAME);
+		String projectResponsible = request.getParameter(FIELD_PROJECT_RESPONSIBLE);
+		String submissionType = request.getParameter(FIELD_SUBMISSION_TYPE);
+		String fileType = request.getParameter(FIELD_FILE_TYPE);
 
 		Company company = new Company();
 		try {
@@ -64,16 +67,28 @@ public final class SignUpForm extends Form {
 
 			if (errors.isEmpty()) {
 				companyDao.create(company);
+				createCompanySpace(company.getCompanyName());
 				results = SIGNIN_SUCCESSFUL;
 			} else {
 				results = SIGNIN_FAIL;
 			}
-		} catch (DAOException e) {
+		} catch (Exception e) {
 			results = SIGNIN_FAIL_LONG;
 			e.printStackTrace();
 		}
 
 		return company;
+	}
+
+	private void createCompanySpace(String companyName) throws Exception {
+
+		File dirResource = new File(STORAGE_FILE_PATH + companyName + "/resource");
+		File dirData = new File(STORAGE_FILE_PATH + companyName + "/data");
+
+		if (!(dirData.mkdirs() & dirResource.mkdirs())) {
+			throw new Exception("Failet to create the directory of the company.");
+		}
+
 	}
 
 	private void treatResponsible1Email(String email, Company company) {
