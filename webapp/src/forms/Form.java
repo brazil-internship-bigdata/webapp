@@ -30,6 +30,7 @@ public abstract class Form {
 	public static final String	FIELD_PROJECT_RESPONSIBLE	= "project_responsible";
 	public static final String	FIELD_SUBMISSION_TYPE		= "submission_type";
 	public static final String	FIELD_FILE_TYPE				= "file_type";
+	public static final String	FIELD_DATA_DESCRIPTION		= "data_description";
 
 	public Form(CompanyDao companyDao) {
 		this.companyDao = companyDao;

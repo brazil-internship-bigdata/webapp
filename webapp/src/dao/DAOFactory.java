@@ -12,7 +12,7 @@ import com.jolbox.bonecp.BoneCPConfig;
 
 public class DAOFactory {
 
-	private static final String	FILE_PROPERTIES		= "/dao/dao.properties";
+	private static final String	FILE_PROPERTIES		= "webapp.properties";
 	private static final String	PROPERTY_URL		= "url";
 	private static final String	PROPERTY_DRIVER		= "driver";
 	private static final String	PROPERTY_USERNAME	= "username";

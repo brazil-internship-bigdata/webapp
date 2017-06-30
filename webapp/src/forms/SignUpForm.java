@@ -30,6 +30,7 @@ public final class SignUpForm extends Form {
 		String projectResponsible = request.getParameter(FIELD_PROJECT_RESPONSIBLE);
 		String submissionType = request.getParameter(FIELD_SUBMISSION_TYPE);
 		String fileType = request.getParameter(FIELD_FILE_TYPE);
+		String dataDescription = request.getParameter(FIELD_DATA_DESCRIPTION);
 
 		Company company = new Company();
 		try {
@@ -45,6 +46,7 @@ public final class SignUpForm extends Form {
 			treatProjectResponsible(projectResponsible, company);
 			treatSubmissionType(submissionType, company);
 			treatFileType(fileType, company);
+			treatDataDescription(fileType, company);
 
 			if (errors.isEmpty()) {
 				companyDao.create(company);
@@ -59,6 +61,24 @@ public final class SignUpForm extends Form {
 		}
 
 		return company;
+	}
+
+	private void treatDataDescription(String dataDescription, Company company) {
+		try {
+			checkDataDescription(dataDescription);
+		} catch (FormValidationException e) {
+			setErreur(FIELD_DATA_DESCRIPTION, e.getMessage());
+		}
+		company.setDataDescription(dataDescription);
+
+	}
+
+	private void checkDataDescription(String dataDescription) throws FormValidationException {
+		if (dataDescription.length() > 300) {
+			throw new FormValidationException("The data description must contains less than 300 characters. Actually + "
+					+ dataDescription.length() + "characters");
+		}
+
 	}
 
 	private void createCompanySpace(String companyName) throws Exception {
@@ -101,8 +121,10 @@ public final class SignUpForm extends Form {
 
 	private void treatResponsible2Email(String email, Company company) {
 		try {
-			if (email != null)
+			if (email != null && email.length() > 0) {
 				checkEmail(email);
+			}
+
 		} catch (FormValidationException e) {
 			setErreur(FIELD_RESPONSIBLE_2_EMAIL, e.getMessage());
 		}
@@ -111,7 +133,10 @@ public final class SignUpForm extends Form {
 
 	private void treatResponsible2Phone(String phone, Company company) {
 		try {
-			checkPhone(phone);
+			if (phone != null && phone.length() > 0) {
+				checkPhone(phone);
+			}
+
 		} catch (FormValidationException e) {
 			setErreur(FIELD_RESPONSIBLE_2_PHONE, e.getMessage());
 		}
@@ -120,7 +145,9 @@ public final class SignUpForm extends Form {
 
 	private void treatResponsible2Name(String name, Company company) {
 		try {
-			checkProjectResponsible(name);
+			if (name != null && name.length() > 0) {
+				checkProjectResponsible(name);
+			}
 		} catch (FormValidationException e) {
 			setErreur(FIELD_RESPONSIBLE_2_NAME, e.getMessage());
 		}

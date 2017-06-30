@@ -81,6 +81,13 @@
                 <span class="error">${form.errors['file_type']}</span>
                 <br />
                 
+                 <label for="data_description">Data description <span class="require">*</span></label>     <br />
+                 <textarea name="data_description" rows="5" cols="20"><c:out value="${company.dataDescription}"/></textarea>
+                <span class="error">${form.errors['data_description']}</span>
+                
+
+                <br />
+                
                    <input type="submit" value="Sign up" class="sansLabel" />
                 <br />
                 

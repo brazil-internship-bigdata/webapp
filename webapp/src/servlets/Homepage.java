@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,7 +16,7 @@ import dao.FileUploadDao;
 
 @SuppressWarnings("serial")
 @WebServlet("/homepage")
-public class Homepage extends HttpServlet implements ServletConstants {
+public class Homepage extends ServletWithConstants {
 
 	private FileUploadDao fileUploadDao;
 

@@ -8,7 +8,6 @@ import java.io.OutputStream;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,7 +18,7 @@ import dao.DAOFactory;
 @WebServlet("/download")
 @MultipartConfig(location = "/temp", maxFileSize = 10 * 1024 * 1024, maxRequestSize = 5 * 10 * 1024
 		* 1024, fileSizeThreshold = 1024 * 1024)
-public class Download extends HttpServlet implements ServletConstants {
+public class Download extends ServletWithConstants {
 
 	private CompanyDao companyDao;
 

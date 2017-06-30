@@ -1,11 +1,19 @@
 package servlets;
 
-public interface ServletConstants {
+import java.io.InputStream;
+import java.util.Properties;
+
+import javax.servlet.http.HttpServlet;
+
+@SuppressWarnings("serial")
+public abstract class ServletWithConstants extends HttpServlet {
+
+	private static final String	STORAGE_PROPERTY		= "storage";
 
 	public static final String	CONF_DAO_FACTORY		= "daofactory";
 
 	// TODO fichier porperties
-	public static final String	STORAGE_FILE_PATH		= "/home/geourjoa/git/webapp/webapp/storage/";
+	public static String		STORAGE_FILE_PATH;
 	public static final String	RESOURCE_FILE_PATH		= "/resource/";
 	public static final String	DATA_FILE_PATH			= "/data/";
 
@@ -30,4 +38,21 @@ public interface ServletConstants {
 	public static final String	ATT_FILES_SESSION		= "files";
 
 	public static final String	URL_REDIRECTION			= "/login";
+
+	public static final String	FILE_PROPERTIES			= "webapp.properties";
+
+	public static final String	DATA_FILE_EXTENSION		= "csv";
+
+	public ServletWithConstants() {
+		Properties properties = new Properties();
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		InputStream fileProperties = classLoader.getResourceAsStream(FILE_PROPERTIES);
+
+		try {
+			properties.load(fileProperties);
+			STORAGE_FILE_PATH = properties.getProperty(STORAGE_PROPERTY);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

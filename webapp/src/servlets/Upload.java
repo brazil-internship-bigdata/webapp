@@ -1,5 +1,7 @@
 package servlets;
 
+import static servlets.ServletWithConstants.DATA_FILE_EXTENSION;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -11,7 +13,6 @@ import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -27,7 +28,7 @@ import dao.FileUploadDao;
 @WebServlet("/upload")
 @MultipartConfig(location = "/temp", maxFileSize = 10 * 1024 * 1024, maxRequestSize = 5 * 10 * 1024
 		* 1024, fileSizeThreshold = 1024 * 1024)
-public class Upload extends HttpServlet implements ServletConstants {
+public class Upload extends ServletWithConstants {
 
 	private CompanyDao		companyDao;
 	private FileUploadDao	fileUploadDao;
@@ -52,7 +53,7 @@ public class Upload extends HttpServlet implements ServletConstants {
 
 			try {
 				String path;
-				if (extension.equals("csv")) {
+				if (extension.equals(DATA_FILE_EXTENSION)) {
 					path = STORAGE_FILE_PATH + companyName + DATA_FILE_PATH;
 				} else {
 					path = STORAGE_FILE_PATH + companyName + RESOURCE_FILE_PATH;
