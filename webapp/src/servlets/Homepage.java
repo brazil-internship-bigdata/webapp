@@ -17,25 +17,11 @@ import dao.FileUploadDao;
 
 @SuppressWarnings("serial")
 @WebServlet("/homepage")
-public class Homepage extends HttpServlet {
+public class Homepage extends HttpServlet implements ServletConstants {
 
-	// TODO Constantes
-	public static final String	CONF_DAO_FACTORY	= "daofactory";
-
-	public static final String	ATT_COMPANY_SESSION	= "companySession";
-
-	public static final String	ATT_CLIENT			= "client";
-	public static final String	ATT_FORM			= "form";
-
-	public static final String	VUE					= "/WEB-INF/homepage.jsp";
-
-	public static final String	URL_REDIRECTION		= "/login";
-	private static final String	ATT_FILES_SESSION	= "files";
-
-	private FileUploadDao		fileUploadDao;
+	private FileUploadDao fileUploadDao;
 
 	public void init() throws ServletException {
-		/* Récupération d'une instance de notre DAO Utilisateur */
 		this.fileUploadDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getFileUploadDao();
 	}
 
@@ -51,7 +37,7 @@ public class Homepage extends HttpServlet {
 
 			List<FileUpload> filesUpload = fileUploadDao.findAllByCompany(company.getId());
 			httpSession.setAttribute(ATT_FILES_SESSION, filesUpload);
-			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+			this.getServletContext().getRequestDispatcher(HOMEPAGE_VIEW).forward(request, response);
 		}
 
 	}

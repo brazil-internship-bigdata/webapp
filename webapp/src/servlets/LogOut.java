@@ -11,9 +11,7 @@ import javax.servlet.http.HttpSession;
 
 @SuppressWarnings("serial")
 @WebServlet("/logout")
-public class LogOut extends HttpServlet {
-
-	public static final String URL_REDIRECTION = "/login";
+public class LogOut extends HttpServlet implements ServletConstants {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
