@@ -19,6 +19,7 @@ import dao.FileUploadDao;
 @WebServlet("/homepage")
 public class Homepage extends HttpServlet {
 
+	// TODO Constantes
 	public static final String	CONF_DAO_FACTORY	= "daofactory";
 
 	public static final String	ATT_COMPANY_SESSION	= "companySession";

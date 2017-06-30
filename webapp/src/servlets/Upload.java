@@ -28,9 +28,10 @@ import dao.FileUploadDao;
 		* 1024, fileSizeThreshold = 1024 * 1024)
 public class Upload extends HttpServlet {
 
+	// TODO Constantes
 	public static final String	CONF_DAO_FACTORY	= "daofactory";
 	public static final String	STORAGE_FILE_PATH	= "/home/geourjoa/git/webapp/webapp/storage/";
-	private static final int	TAILLE_TAMPON		= 200;
+	private static final int	BUFFER_SIZE			= 200;
 	private static final String	RESOURCE_FILE_PATH	= "/resource/";
 	private static final String	DATA_FILE_PATH		= "/data/";
 
@@ -46,6 +47,7 @@ public class Upload extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		// TODO creer constante pour les champs
 		Part part = req.getPart("file");
 		String companyName = req.getParameter("company");
 		String password = req.getParameter("password");
@@ -100,11 +102,11 @@ public class Upload extends HttpServlet {
 		BufferedOutputStream sortie = null;
 		try {
 			/* Ouvre les flux. */
-			entree = new BufferedInputStream(part.getInputStream(), TAILLE_TAMPON);
+			entree = new BufferedInputStream(part.getInputStream(), BUFFER_SIZE);
 			System.out.println(System.getProperties().get("user.dir"));
-			sortie = new BufferedOutputStream(new FileOutputStream(new File(chemin + nomFichier)), TAILLE_TAMPON);
+			sortie = new BufferedOutputStream(new FileOutputStream(new File(chemin + nomFichier)), BUFFER_SIZE);
 
-			byte[] tampon = new byte[TAILLE_TAMPON];
+			byte[] tampon = new byte[BUFFER_SIZE];
 			int longueur;
 			while ((longueur = entree.read(tampon)) > 0) {
 				sortie.write(tampon, 0, longueur);

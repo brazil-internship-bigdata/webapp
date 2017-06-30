@@ -18,6 +18,7 @@ import forms.LoginForm;
 @SuppressWarnings("serial")
 @WebServlet("/login")
 public class Login extends HttpServlet {
+	// TODO Constantes
 	public static final String	CONF_DAO_FACTORY	= "daofactory";
 	public static final String	HOMEPAGE			= "homepage";
 	public static final String	ATT_COMPANY			= "company";

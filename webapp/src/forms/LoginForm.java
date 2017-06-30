@@ -6,10 +6,6 @@ import beans.Company;
 import dao.CompanyDao;
 
 public final class LoginForm extends Form {
-	private static final String	FIELD_COMPANY_NAME		= "company_name";
-	private static final String	FIELD_PASSWORD_COMPANY	= "password_company";
-
-	private static final String	CONNECTION_ERROR		= "compteInconnu";
 
 	public LoginForm(CompanyDao companyDao) {
 		super(companyDao);

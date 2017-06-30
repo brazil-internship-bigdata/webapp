@@ -8,25 +8,6 @@ import beans.Company;
 import dao.CompanyDao;
 
 public final class SignUpForm extends Form {
-	private static final String	SIGNIN_FAIL_LONG			= "Intern error during sign up, please contact the administrator.";
-	private static final String	SIGNIN_FAIL					= "Sign up failed";
-	private static final String	SIGNIN_SUCCESSFUL			= "Sign up successful";
-
-	public static final String	STORAGE_FILE_PATH			= "/home/geourjoa/git/webapp/webapp/storage/";
-
-	private static final String	FIELD_COMPANY_NAME			= "company_name";
-	private static final String	FIELD_COMPANY_FULL_NAME		= "company_full_name";
-	private static final String	FIELD_PASSWORD_COMPANY		= "password_company";
-	private static final String	FIELD_PASSWORD_CONFIRMATION	= "password_confirmation";
-	private static final String	FIELD_RESPONSIBLE_1_NAME	= "responsible_1_name";
-	private static final String	FIELD_RESPONSIBLE_1_PHONE	= "responsible_1_phone";
-	private static final String	FIELD_RESPONSIBLE_1_EMAIL	= "responsible_1_email";
-	private static final String	FIELD_RESPONSIBLE_2_NAME	= "responsible_2_name";
-	private static final String	FIELD_RESPONSIBLE_2_PHONE	= "responsible_2_phone";
-	private static final String	FIELD_RESPONSIBLE_2_EMAIL	= "responsible_2_email";
-	private static final String	FIELD_PROJECT_RESPONSIBLE	= "project_responsible";
-	private static final String	FIELD_SUBMISSION_TYPE		= "submission_type";
-	private static final String	FIELD_FILE_TYPE				= "file_type";
 
 	// private static final String ENCRYPTION_ALGORITHM = "SHA-256";
 

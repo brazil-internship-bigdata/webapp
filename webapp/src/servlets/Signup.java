@@ -16,12 +16,16 @@ import forms.SignUpForm;
 @SuppressWarnings("serial")
 @WebServlet("/signup")
 public class Signup extends HttpServlet {
+
+	// TODO Constantes
 	public static final String	CONF_DAO_FACTORY	= "daofactory";
 	public static final String	ATT_COMPANY			= "company";
 	public static final String	ATT_FORM			= "form";
 	public static final String	VIEW				= "/WEB-INF/signup.jsp";
 
 	private CompanyDao			companyDao;
+
+	// TODO liste déroulante dans la JSP
 
 	public void init() throws ServletException {
 		/* Récupération d'une instance de notre DAO Utilisateur */
