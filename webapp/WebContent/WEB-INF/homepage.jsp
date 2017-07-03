@@ -4,8 +4,11 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Homepage</title>
-         <link type="text/css" rel="stylesheet" href='<c:url value="/inc/style.css"/>'>
+		<title>Homepage</title>
+		<link type="text/css" rel="stylesheet" href='<c:url value="/inc/style.css"/>'>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
     	<h1>Welcome  ${sessionScope.companySession.companyName}</h1>
@@ -58,6 +61,10 @@
                 </tr>
                 </c:forEach>
           </table>
+          
+          
+        <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         
     </body>
 </html>
