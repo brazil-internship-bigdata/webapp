@@ -72,12 +72,23 @@
                 <br />
                 
                 <label for="submission_type">Submission type <span class="require">*</span></label>
-                <input type="text" id="submission_type" name=submission_type value="<c:out value="${company.submissionType}"/>" size="20" maxlength="60" />
+<%--                 <input type="text" id="submission_type" name=submission_type value="<c:out value="${company.submissionType}"/>" size="20" maxlength="60" /> --%>
+			    <select name="submission_type" id="submission_type">
+				    <option value="webservice" selected="selected">Webservice</option>
+				    <option value="email">E-mail</option>
+			
+				</select>               
+               
                 <span class="error">${form.errors['submission_type']}</span>
                 <br />
                 
                 <label for="file_type">File type <span class="require">*</span></label>
-                <input type="text" id="file_type" name="file_type" value="<c:out value="${company.fileType}"/>" size="20" maxlength="60" />
+               	 <select name="file_type" id="file_type">
+				    <option value="csv" selected="selected">csv</option>
+				    <option value="excel">excel</option>
+				  </select>
+                
+<%--                 <input type="text" id="file_type" name="file_type" value="<c:out value="${company.fileType}"/>" size="20" maxlength="60" /> --%>
                 <span class="error">${form.errors['file_type']}</span>
                 <br />
                 

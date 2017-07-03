@@ -11,9 +11,17 @@ import beans.FileUpload;
 
 public class FileUploadDaoImpl implements FileUploadDao {
 
-	private static final String	SQL_INSERT		= "INSERT INTO FileUpload (`filename`,`file_type`,`id_company`,`dateUpload`,`size_file`)VALUES( ?, ?, ?, NOW(), ?);";
+	private static final String	SQL_INSERT					= "INSERT INTO FileUpload (`filename`,`file_type`,`id_company`,`dateUpload`,`size_file`)VALUES( ?, ?, ?, NOW(), ?);";
 
-	private static final String	SQL_BY_COMPANY	= "SELECT id, filename, file_type, id_company,   dateUpload, size_file FROM FileUpload WHERE  id_company = ? ;";
+	private static final String	SQL_DATA_BY_COMPANY			= "SELECT id, filename, file_type, id_company,   dateUpload, size_file FROM FileUpload WHERE  id_company = ? && file_type = 'csv';";
+
+	private static final String	SQL_RESOURCE_BY_COMPANY		= "SELECT id, filename, file_type, id_company,   dateUpload, size_file FROM FileUpload WHERE  id_company = ? && file_type <> 'csv';";
+
+	private static final String	SQL_QUANTITY_DATA			= " SELECT SUM(size_file) AS quantity FROM FileUpload FileUpload WHERE id_company= ? && file_type = 'csv';";
+
+	private static final String	SQL_NUMBER_DATA_FILE		= " SELECT COUNT(size_file) AS number FROM FileUpload FileUpload WHERE id_company= ? && file_type = 'csv';";
+
+	private static final String	SQL_NUMBER_RESOURCE_FILE	= " SELECT COUNT(size_file) AS number FROM FileUpload FileUpload WHERE id_company= ? && file_type <> 'csv';";
 
 	private DAOFactory			daoFactory;
 
@@ -57,7 +65,7 @@ public class FileUploadDaoImpl implements FileUploadDao {
 	}
 
 	@Override
-	public List<FileUpload> findAllByCompany(Long id_company) throws DAOException {
+	public List<FileUpload> findAllDataByCompany(Long id_company) throws DAOException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -67,7 +75,8 @@ public class FileUploadDaoImpl implements FileUploadDao {
 
 			connection = daoFactory.getConnection();
 
-			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_BY_COMPANY, false, id_company);
+			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_DATA_BY_COMPANY, false,
+					id_company);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -93,6 +102,116 @@ public class FileUploadDaoImpl implements FileUploadDao {
 		fileupload.setDateUpload(resultSet.getTimestamp("dateUpload"));
 
 		return fileupload;
+	}
+
+	@Override
+	public int quantityOfData(Long id_company) throws DAOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int quantity = 0;
+
+		try {
+
+			connection = daoFactory.getConnection();
+
+			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_QUANTITY_DATA, false, id_company);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				// TODO constantes pour les champs de la BDD
+				quantity = resultSet.getInt("quantity");
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOTools.silentCloses(resultSet, preparedStatement, connection);
+		}
+
+		return quantity;
+	}
+
+	@Override
+	public int numbertOfDataFile(Long id_company) throws DAOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int number = 0;
+
+		try {
+
+			connection = daoFactory.getConnection();
+
+			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_NUMBER_DATA_FILE, false,
+					id_company);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				// TODO constantes pour les champs de la BDD
+				number = resultSet.getInt("number");
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOTools.silentCloses(resultSet, preparedStatement, connection);
+		}
+
+		return number;
+	}
+
+	@Override
+	public int numbertOfResourceFile(Long id_company) throws DAOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int number = 0;
+
+		try {
+
+			connection = daoFactory.getConnection();
+
+			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_NUMBER_RESOURCE_FILE, false,
+					id_company);
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				// TODO constantes pour les champs de la BDD
+				number = resultSet.getInt("number");
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOTools.silentCloses(resultSet, preparedStatement, connection);
+		}
+
+		return number;
+	}
+
+	@Override
+	public List<FileUpload> findAllResourceByCompany(Long id_company) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		List<FileUpload> fileUploads = new ArrayList<FileUpload>();
+
+		try {
+
+			connection = daoFactory.getConnection();
+
+			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_RESOURCE_BY_COMPANY, false,
+					id_company);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				fileUploads.add(map(resultSet));
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOTools.silentCloses(resultSet, preparedStatement, connection);
+		}
+
+		return fileUploads;
 	}
 
 }
