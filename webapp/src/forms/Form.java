@@ -70,8 +70,8 @@ public abstract class Form {
 	}
 
 	protected void checkCompanyName(String name) throws FormValidationException {
-		if (name != null && name.length() < 3) {
-			throw new FormValidationException("Company name must contains at least 3 characters.");
+		if (name != null && (name.length() < 3 || name.length() > 10)) {
+			throw new FormValidationException("Company name must contains between 3 and 10 characters.");
 		}
 	}
 }

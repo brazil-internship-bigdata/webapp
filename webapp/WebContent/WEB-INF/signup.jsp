@@ -32,6 +32,7 @@
 	                            <label for="company_name" class="control-label col-md-4  requiredField"> Company name<span class="asteriskField">*</span> </label>
 	                            <div class="controls col-md-8 ">
 	                                <input class="input-md  textinput textInput form-control" id="company_name" value="${company.companyName}" maxlength="30" name=company_name placeholder="Company name" style="margin-bottom: 10px" type="text" />
+	                            	<span class="error">${form.errors['company_name']}</span>
 	                            </div>
 	                        </div>
 	                        
@@ -39,6 +40,7 @@
 	                            <label for="company_full_name" class="control-label col-md-4  requiredField"> Company full name<span class="asteriskField">*</span> </label>
 	                            <div class="controls col-md-8 ">
 	                                <input class="input-md  textinput textInput form-control" id="company_full_name"  value="${company.companyFullName}"  maxlength="30" name=company_full_name placeholder="Company full name" style="margin-bottom: 10px" type="text" />
+	                            	<span class="error">${form.errors['company_full_name']}</span>
 	                            </div>
 	                        </div>
     
@@ -46,6 +48,7 @@
 	                            <label for="password_company" class="control-label col-md-4  requiredField">Password<span class="asteriskField">*</span> </label>
 	                            <div class="controls col-md-8 "> 
 	                                <input class="input-md textinput textInput form-control" id="password_company"    name="password_company" placeholder="Create a password" style="margin-bottom: 10px" type="password" />
+	                             <span class="error">${form.errors['password_company']}</span>
 	                            </div>
 	                        </div>
 	                        
@@ -53,6 +56,7 @@
 	                            <label for="password_confirmation" class="control-label col-md-4  requiredField">Re-Password<span class="asteriskField">*</span> </label>
 	                            <div class="controls col-md-8 "> 
 	                                <input class="input-md textinput textInput form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm password" style="margin-bottom: 10px" type="password" />
+	                             <span class="error">${form.errors['password_confirmation']}</span>
 	                            </div>
 	                        </div>
 	                        
@@ -60,6 +64,7 @@
 	                            <label for="responsible_1_name" class="control-label col-md-4  requiredField">Responsible 1 name<span class="asteriskField">*</span> </label>
 	                            <div class="controls col-md-8 "> 
 	                                 <input class="input-md textinput textInput form-control" id="responsible_1_name"  value="${company.responsible1Name}"  name="responsible_1_name" placeholder="Responsible 1 name" style="margin-bottom: 10px" type="text" />
+	                           		 <span class="error">${form.errors['responsible_1_name']}</span>
 	                            </div>
 	                        </div> 
 	                        
@@ -67,41 +72,47 @@
 	                            <label for="responsible_1_phone" class="control-label col-md-4  requiredField">Responsible 1 phone<span class="asteriskField">*</span> </label>
 	                            <div class="controls col-md-8 "> 
 	                                 <input class="input-md textinput textInput form-control" id="responsible_1_phone"  value="${company.responsible1Phone}" name="responsible_1_phone" placeholder="Responsible 1 phone" style="margin-bottom: 10px" type="text" />
+	                            	<span class="error">${form.errors['responsible_1_phone']}</span>
 	                            </div>
 	                        </div> 
 	                        
 	                        <div class="form-group required"> 
 	                            <label for="responsible_1_email" class="control-label col-md-4  requiredField">Responsible 1 email<span class="asteriskField">*</span> </label>
 	                            <div class="controls col-md-8 "> 
-	                                 <input class="input-md textinput textInput form-control" id="responsible_1_email"  value="${company.responsible1Email} name="responsible_1_email" placeholder="Responsible 1 email" style="margin-bottom: 10px" type="email" />
+	                                 <input class="input-md textinput textInput form-control" id="responsible_1_email"  value="${company.responsible1Email}" name="responsible_1_email" placeholder="Responsible 1 email" style="margin-bottom: 10px" type="email" />
+	                            	<span class="error">${form.errors['responsible_1_email']}</span>
 	                            </div>
 	                        </div> 
 	                        
 	                        <div class="form-group "> 
 	                            <label for="responsible_2_name" class="control-label col-md-4  ">Responsible 2 name</label>
 	                            <div class="controls col-md-8 "> 
-	                                 <input class="input-md textinput textInput form-control" id="responsible_2_name"  value="${company.responsible2Name} name="responsible_2_name" placeholder="Responsible 2 name" style="margin-bottom: 10px" type="text" />
+	                                 <input class="input-md textinput textInput form-control" id="responsible_2_name"  value="${company.responsible2Name}" name="responsible_2_name" placeholder="Responsible 2 name" style="margin-bottom: 10px" type="text" />
+	                            	 <span class="error">${form.errors['responsible_2_name']}</span>
 	                            </div>
 	                        </div> 
 	                        
 	                        <div class="form-group "> 
 	                            <label for="responsible_2_phone" class="control-label col-md-4  ">Responsible 2 phone </label>
 	                            <div class="controls col-md-8 "> 
-	                                 <input class="input-md textinput textInput form-control" id="responsible_2_phone"  value="${company.responsible2Phone} name="responsible_2_phone" placeholder="Responsible 2 phone" style="margin-bottom: 10px" type="text" />
+	                                 <input class="input-md textinput textInput form-control" id="responsible_2_phone"  value="${company.responsible2Phone}" name="responsible_2_phone" placeholder="Responsible 2 phone" style="margin-bottom: 10px" type="text" />
+	                            	<span class="error">${form.errors['responsible_2_phone']}</span>
 	                            </div>
 	                        </div> 
 	                        
 	                        <div class="form-group"> 
 	                            <label for="responsible_2_email" class="control-label col-md-4 ">Responsible 2 email</label>
 	                            <div class="controls col-md-8 "> 
-	                                 <input class="input-md textinput textInput form-control" id="responsible_2_email"  value="${company.responsible2Email} name="responsible_2_email" placeholder="Responsible 2 email" style="margin-bottom: 10px" type="email" />
+	                                 <input class="input-md textinput textInput form-control" id="responsible_2_email"  value="${company.responsible2Email}" name="responsible_2_email" placeholder="Responsible 2 email" style="margin-bottom: 10px" type="email" />
+	                            	<span class="error">${form.errors['responsible_2_email']}</span>
 	                            </div>
 	                        </div> 
 	                        
 	    				   <div class="form-group required"> 
 	                            <label for="project_responsible" class="control-label col-md-4  requiredField">Project responsible name<span class="asteriskField">*</span> </label>
 	                            <div class="controls col-md-8 "> 
-	                                 <input class="input-md textinput textInput form-control" id="project_responsible"  value="${company.projectResponsible} name="project_responsible" placeholder="Project responsible name" style="margin-bottom: 10px" type="text" />
+	                                 <input class="input-md textinput textInput form-control" id="project_responsible"  value="${company.projectResponsible}" name="project_responsible" placeholder="Project responsible name" style="margin-bottom: 10px" type="text" />
+	                            	<span class="error">${form.errors['project_responsible']}</span>
 	                            </div>
 	                        </div> 
 	                        
@@ -128,7 +139,8 @@
         					<div class="form-group required"> 
 	                            <label for="data_description" class="control-label col-md-4  requiredField">Data description<span class="asteriskField">*</span> </label>
 	                            <div class="controls col-md-8 "> 
-	                            	 <textarea class="form-control" id="data_description" name="data_description"  value="${company.dataDescription}></textarea>
+	                            	 <textarea class="form-control" id="data_description" name="data_description"  value="${company.dataDescription}"></textarea>
+	                            	<span class="error">${form.errors['data_description']}</span>
 	                            </div>
 	                        </div> 
                 
@@ -137,7 +149,7 @@
                   			 <div style="margin-top:10px" class="form-group">
 	                            <!-- Button -->
 	                            <div class="col-sm-12 controls">
-	                                <input type="submit" class="btn btn-info" value="Sign up">
+	                                <input type="submit" class="btn btn-info pull-right" value="Sign up">
 	                            </div>
 	                        </div>
 	                        
