@@ -31,10 +31,14 @@ public abstract class ServletWithConstants extends HttpServlet {
 
 	public static final String	SIGNUP_VIEW					= "/WEB-INF/signup.jsp";
 
+	public static final String	ADMIN_VIEW					= "/WEB-INF/admin.jsp";
+	public static final String	ADMIN						= "admin";
+
 	public static final String	ATT_COMPANY					= "company";
 	public static final String	ATT_FORM					= "form";
 
 	public static final String	ATT_COMPANY_SESSION			= "companySession";
+	public static final String	ATT_COMPANIES_SESSION		= "companies";
 	public static final String	ATT_FILES_DATA_SESSION		= "dataFiles";
 	public static final String	ATT_FILES_RESOURCE_SESSION	= "resourceFiles";
 
@@ -47,6 +51,7 @@ public abstract class ServletWithConstants extends HttpServlet {
 	public static final String	FILE_PROPERTIES				= "webapp.properties";
 
 	public static final String	DATA_FILE_EXTENSION			= "csv";
+	public static final String	ATT_NB_COMPANY				= "nbCompany";
 
 	public ServletWithConstants() {
 		Properties properties = new Properties();

@@ -35,6 +35,7 @@ public class Homepage extends ServletWithConstants {
 
 		if (company == null) {
 			response.sendRedirect(this.getServletContext().getContextPath() + URL_REDIRECTION);
+
 		} else {
 
 			List<FileUpload> filesDataUpload = fileUploadDao.findAllDataByCompany(company.getId());

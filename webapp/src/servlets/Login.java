@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import beans.Company;
 import dao.CompanyDao;
 import dao.DAOFactory;
+import forms.Form;
 import forms.LoginForm;
 
 @SuppressWarnings("serial")
@@ -28,26 +29,40 @@ public class Login extends ServletWithConstants {
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LoginForm form = new LoginForm(companyDao);
-
-		Company company = form.loginCompany(request);
 
 		HttpSession session = request.getSession();
 
-		if (form.getErrors().isEmpty()) {
-			session.setAttribute(ATT_COMPANY_SESSION, company);
+		if (adminRequest(request)) {
 
-			System.out.println(company.getCompanyName());
+			response.sendRedirect(ADMIN);
 
-			response.sendRedirect(HOMEPAGE);
 		} else {
-			session.setAttribute(ATT_COMPANY_SESSION, null);
+			LoginForm form = new LoginForm(companyDao);
 
-			request.setAttribute(ATT_FORM, form);
-			request.setAttribute(ATT_COMPANY, company);
+			Company company = form.loginCompany(request);
 
-			this.getServletContext().getRequestDispatcher(LOGIN_VIEW).forward(request, response);
+			if (form.getErrors().isEmpty()) {
+				session.setAttribute(ATT_COMPANY_SESSION, company);
+
+				response.sendRedirect(HOMEPAGE);
+			} else {
+				session.setAttribute(ATT_COMPANY_SESSION, null);
+
+				request.setAttribute(ATT_FORM, form);
+				request.setAttribute(ATT_COMPANY, company);
+
+				this.getServletContext().getRequestDispatcher(LOGIN_VIEW).forward(request, response);
+			}
 		}
 
+	}
+
+	private boolean adminRequest(HttpServletRequest request) {
+		boolean result = request.getParameter(Form.FIELD_COMPANY_NAME).equals("admin")
+				&& request.getParameter(Form.FIELD_PASSWORD_COMPANY).equals("admin");
+
+		System.out.println(result);
+
+		return result;
 	}
 }

@@ -19,6 +19,8 @@ public class Company {
 	private String		fileType;
 	private String		dataDescription;
 	private Timestamp	signInDate;
+	private int			dataFileNumber;
+	private int			dataQuantity;
 
 	public Long getId() {
 		return id;
@@ -138,6 +140,22 @@ public class Company {
 
 	public void setCompanyFullName(String companyFullName) {
 		this.companyFullName = companyFullName;
+	}
+
+	public int getDataFileNumber() {
+		return dataFileNumber;
+	}
+
+	public void setDataFileNumber(int dataFileNumber) {
+		this.dataFileNumber = dataFileNumber;
+	}
+
+	public int getDataQuantity() {
+		return dataQuantity;
+	}
+
+	public void setDataQuantity(int dataQuantity) {
+		this.dataQuantity = dataQuantity;
 	}
 
 }

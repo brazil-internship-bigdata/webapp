@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import beans.Company;
 
 public interface CompanyDao {
@@ -10,4 +12,5 @@ public interface CompanyDao {
 
 	public boolean loginCheck(String companyName, String password) throws DAOException;
 
+	public List<Company> companyOverview() throws DAOException;
 }
