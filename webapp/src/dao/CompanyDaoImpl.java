@@ -61,7 +61,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
 	public boolean loginCheck(String companyName, String password) throws DAOException {
 
-		System.out.println("Mail " + companyName);
+		System.out.println("Company " + companyName);
 		System.out.println("mdp " + password);
 
 		Connection connection = null;
@@ -78,7 +78,6 @@ public class CompanyDaoImpl implements CompanyDao {
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
-				System.out.println("result ");
 				result = true;
 			}
 		} catch (SQLException e) {
