@@ -12,11 +12,12 @@ The base of the URI is :
 
 The mapping of the URI path space is presented in the following table:
 
-URI path                         | Resource class                                               | Param in body (key/type)                      | HTTP methods
+URI path                         | Resource class                                               | Param  (key/type)                      | HTTP methods
 -------------------------------- | ------------------------------------------------------------ | --------------------------------------------- | ------------
-**_/upload_**                    | Upload, store the file file of the company company           | file : file, company : text, password : text  | POST                              
-**_/download_**                  | Download, download the file *file* of the company *company*. | file : text, company : text, password : text  | POST                                                       
-
+**_/upload_**                    | Upload, store the file file of the company company           | Body : file : file, company : text, password : text  | POST                              
+**_/download_**                  | Download, download the file *file* of the company *company*. | Body : file : text, company : text, password : text  | POST                                                       
+**_/fileList_**                   | List of files from *companyName* | Query : companyName : text  | GET   
+**_/loginAPI_**                   | Log in API         | Query : company_name : text, password_company : text  | GET 
 
 
 
