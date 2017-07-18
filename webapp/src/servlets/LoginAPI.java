@@ -24,8 +24,8 @@ public class LoginAPI extends ServletWithConstants {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("company : " + request.getParameter("company"));
-		System.out.println("password : " + request.getParameter("password"));
+		System.out.println("company : " + request.getParameter("company_name"));
+		System.out.println("password : " + request.getParameter("password_company"));
 
 		response.setStatus(HttpServletResponse.SC_OK);
 
@@ -34,7 +34,7 @@ public class LoginAPI extends ServletWithConstants {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("company : " + request.getParameterValues("company_name"));
+		System.out.println("company : " + request.getParameter("company_name"));
 		System.out.println("password : " + request.getParameter("password_company"));
 
 		LoginForm form = new LoginForm(companyDao);

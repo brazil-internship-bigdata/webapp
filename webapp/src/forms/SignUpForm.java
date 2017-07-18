@@ -189,7 +189,6 @@ public final class SignUpForm extends Form {
 			setErreur(FIELD_PASSWORD_CONFIRMATION, null);
 		}
 
-		// TODO Security
 		// ConfigurablePasswordEncryptor passwordEncryptor = new
 		// ConfigurablePasswordEncryptor();
 		// passwordEncryptor.setAlgorithm(ALGO_CHIFFREMENT);
