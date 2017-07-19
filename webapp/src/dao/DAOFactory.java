@@ -75,6 +75,7 @@ public class DAOFactory {
 			config.setMinConnectionsPerPartition(5);
 			config.setMaxConnectionsPerPartition(10);
 			config.setPartitionCount(2);
+		
 			/*
 			 * Création du pool à partir de la configuration, via l'objet BoneCP
 			 */
