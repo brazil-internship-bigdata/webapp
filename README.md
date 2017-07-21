@@ -16,7 +16,7 @@ URI path                         | Resource class                               
 -------------------------------- | ------------------------------------------------------------ | --------------------------------------------- | ------------
 **_/upload_**                    | Upload, store the file file of the company company           | Body : file : file, company : text, password : text  | POST                              
 **_/download_**                  | Download, download the file *file* of the company *company*. | Body : file : text, company : text, password : text  | POST                                                       
-**_/fileList_**                   | List of files from *companyName* | Query : companyName : text  | GET   
+**_/fileList_**                   | List of files from *company_name* | Query : company_name : text  | GET   
 **_/loginAPI_**                   | Log in API         | Query : company_name : text, password_company : text  | GET 
 
 
