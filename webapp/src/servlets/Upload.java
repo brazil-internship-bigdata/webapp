@@ -1,12 +1,11 @@
 package servlets;
 
-import static servlets.ServletWithConstants.DATA_FILE_EXTENSION;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -41,12 +40,11 @@ public class Upload extends ServletWithConstants {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		Part part = req.getPart(API_PARAM_FILE);
+		String fichier = req.getParameter(API_PARAM_FILE);
 		String companyName = req.getParameter(API_PARAM_COMPANY);
 		String password = req.getParameter(API_PARAM_PASSWORD);
 
-		String filename = part.getSubmittedFileName();
-
+		String filename = req.getParameter("fileName");
 		String extension = filename.substring(filename.lastIndexOf('.') + 1, filename.length());
 
 		if (companyDao.loginCheck(companyName, password)) {
@@ -58,7 +56,11 @@ public class Upload extends ServletWithConstants {
 				} else {
 					path = STORAGE_FILE_PATH + companyName + RESOURCE_FILE_PATH;
 				}
-				writeFile(part, filename, path);
+
+				PrintWriter writer = new PrintWriter(path + filename);
+				writer.println(fichier);
+				writer.close();
+
 			} catch (IOException e) {
 				resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			}
@@ -68,7 +70,7 @@ public class Upload extends ServletWithConstants {
 			fileUpload.setFilename(filename);
 
 			fileUpload.setFileType(extension);
-			fileUpload.setSizeFile((Long) part.getSize());
+			fileUpload.setSizeFile((long) fichier.length());
 
 			Company company = companyDao.find(companyName);
 
