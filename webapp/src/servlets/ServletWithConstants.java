@@ -28,6 +28,7 @@ public abstract class ServletWithConstants extends HttpServlet {
 	public static final String	HOMEPAGE_VIEW				= "/WEB-INF/homepage.jsp";
 
 	public static final String	LOGIN_VIEW					= "/WEB-INF/login.jsp";
+	public static final String	UPLOAD_RESOURCE_VIEW		= "/WEB-INF/uploadResource.jsp";
 
 	public static final String	SIGNUP_VIEW					= "/WEB-INF/signup.jsp";
 
