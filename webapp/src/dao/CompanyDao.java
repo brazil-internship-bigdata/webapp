@@ -13,4 +13,6 @@ public interface CompanyDao {
 	public boolean loginCheck(String companyName, String password) throws DAOException;
 
 	public List<Company> companyOverview() throws DAOException;
+
+	public List<Company> companies() throws DAOException;
 }

@@ -15,6 +15,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	private static final String	SQL_INSERT			= "INSERT INTO `bdd_sdzee`.`Company`(`company_name`,`company_full_name`,`password_company`,`responsible_1_name`,`responsible_1_email`,`responsible_1_phone`,`responsible_2_name`,`responsible_2_email`,`responsible_2_phone`,`project_responsible`,`submission_type`,`file_type`,`data_description`,`sign_in_date`)VALUES(	? , ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?, ?,  ?,  NOW());";
 	private static final String	SQL_CONNECTION		= "SELECT id,company_name,company_full_name,password_company,responsible_1_name,responsible_1_email,responsible_1_phone,responsible_2_name,responsible_2_email,responsible_2_phone,project_responsible,submission_type,file_type,data_description,sign_in_date FROM Company WHERE company_name = ? AND password_company = ?";
 	private static final String	SQL_COMPANY_LONG	= "SELECT company_name, company_full_name, responsible_1_name, responsible_1_email, responsible_1_phone, COUNT(filename) AS nb_data_file, SUM(size_file) AS data_quantiy FROM Company c JOIN FileUpload f ON c.id=f.id_company 	WHERE f.file_type = 'csv' 	GROUP BY company_name;";
+	private static final String	SQL_SELECT_ALL		= "SELECT id,company_name,company_full_name,password_company,responsible_1_name,responsible_1_email,responsible_1_phone,responsible_2_name,responsible_2_email,responsible_2_phone,project_responsible,submission_type,file_type,data_description,sign_in_date FROM Company";
 
 	private DAOFactory			daoFactory;
 
@@ -157,6 +158,34 @@ public class CompanyDaoImpl implements CompanyDao {
 				company.setResponsible1Phone(resultSet.getString("responsible_1_phone"));
 				company.setDataFileNumber(resultSet.getInt("nb_data_file"));
 				company.setDataQuantity(resultSet.getInt("data_quantiy"));
+				companies.add(company);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DAOTools.silentCloses(resultSet, preparedStatement, connection);
+		}
+
+		return companies;
+	}
+
+	@Override
+	public List<Company> companies() throws DAOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		List<Company> companies = new ArrayList<Company>();
+
+		try {
+
+			connection = daoFactory.getConnection();
+
+			preparedStatement = DAOTools.initializePreparedStatement(connection, SQL_SELECT_ALL, false);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				Company company = new Company();
+				company.setCompanyName(resultSet.getString("company_name"));
 				companies.add(company);
 			}
 		} catch (SQLException e) {

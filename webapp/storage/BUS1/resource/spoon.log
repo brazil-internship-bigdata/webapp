@@ -1,0 +1,190 @@
+18:08:38,897 INFO  [KarafBoot] Checking to see if org.pentaho.clean.karaf.cache is enabled
+18:08:39,089 INFO  [KarafInstance] 
+*******************************************************************************
+*** Karaf Instance Number: 1 at /home/geourjoa/git/TransformationManager1.0 ***
+***   /transformation/pentaho/data-integration/./system/karaf/caches/spoon/data-2***
+*** FastBin Provider Port:52901                                             ***
+*** Karaf Port:8802                                                         ***
+*** OSGI Service Port:9051                                                  ***
+*******************************************************************************
+juil. 20, 2017 6:08:41 PM org.apache.karaf.main.Main$KarafLockCallback lockAquired
+INFOS: Lock acquired. Setting startlevel to 100
+2017-07-20 18:08:49.847:INFO:oejs.Server:jetty-8.1.15.v20140411
+2017-07-20 18:08:50.002:INFO:oejs.AbstractConnector:Started NIOSocketConnectorWrapper@0.0.0.0:9051
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/blueprint/core
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/configuration/beans
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/configuration/parameterized-types
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/configuration/security
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://schemas.xmlsoap.org/wsdl/
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://www.w3.org/2005/08/addressing
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://schemas.xmlsoap.org/ws/2004/08/addressing
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-management (152) [org.apache.cxf.management.InstrumentationManager]
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-ws-policy (203) [org.apache.cxf.ws.policy.PolicyEngine, org.apache.cxf.policy.PolicyDataEngine, org.apache.cxf.ws.policy.AssertionBuilderRegistry, org.apache.cxf.ws.policy.PolicyInterceptorProviderRegistry, org.apache.cxf.ws.policy.PolicyBuilder, org.apache.cxf.ws.policy.PolicyAnnotationListener, org.apache.cxf.ws.policy.attachment.ServiceModelPolicyProvider, org.apache.cxf.ws.policy.attachment.external.DomainExpressionBuilderRegistry, org.apache.cxf.ws.policy.attachment.external.EndpointReferenceDomainExpressionBuilder, org.apache.cxf.ws.policy.attachment.external.URIDomainExpressionBuilder, org.apache.cxf.ws.policy.attachment.wsdl11.Wsdl11AttachmentPolicyProvider, org.apache.cxf.ws.policy.mtom.MTOMAssertionBuilder, org.apache.cxf.ws.policy.mtom.MTOMPolicyInterceptorProvider]
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-wsdl (189) [org.apache.cxf.wsdl.WSDLManager]
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-transports-http (156) [org.apache.cxf.transport.http.HTTPTransportFactory, org.apache.cxf.transport.http.HTTPWSDLExtensionLoader, org.apache.cxf.transport.http.policy.HTTPClientAssertionBuilder, org.apache.cxf.transport.http.policy.HTTPServerAssertionBuilder, org.apache.cxf.transport.http.policy.NoOpPolicyInterceptorProvider]
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/transports/http/configuration
+juil. 20, 2017 6:08:51 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-bindings-soap (192) [org.apache.cxf.binding.soap.SoapBindingFactory, org.apache.cxf.binding.soap.SoapTransportFactory]
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/blueprint/jaxrs
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/blueprint/jaxrs-client
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-bindings-xml (191) [org.apache.cxf.binding.xml.XMLBindingFactory, org.apache.cxf.binding.xml.wsdl11.XMLWSDLExtensionLoader]
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/blueprint/bindings/soap
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/blueprint/simple
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-frontend-jaxws (194) [org.apache.cxf.jaxws.context.WebServiceContextResourceResolver]
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/blueprint/jaxws
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/binding/coloc
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-transports-local (199) [org.apache.cxf.transport.local.LocalTransportFactory]
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-bindings-object (200) [org.apache.cxf.binding.object.ObjectBindingFactory]
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/blueprint/binding/object
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/policy
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://www.w3.org/ns/ws-policy
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://www.w3.org/2006/07/ws-policy
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://schemas.xmlsoap.org/ws/2004/09/policy
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://www.w3.org/2000/09/xmldsig#
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-ws-addr (220) [org.apache.cxf.ws.addressing.policy.AddressingAssertionBuilder, org.apache.cxf.ws.addressing.policy.UsingAddressingAssertionBuilder, org.apache.cxf.ws.addressing.policy.AddressingPolicyInterceptorProvider, org.apache.cxf.ws.addressing.impl.AddressingWSDLExtensionLoader, org.apache.cxf.ws.addressing.WSAddressingFeature$WSAddressingFeatureApplier, org.apache.cxf.ws.addressing.MAPAggregator$MAPAggregatorLoader]
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/ws/addressing
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-ws-security (222) [org.apache.cxf.ws.security.policy.WSSecurityPolicyLoader, org.apache.cxf.ws.security.cache.CacheCleanupListener]
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-ws-rm (224) [org.apache.cxf.ws.rm.RMManager, org.apache.cxf.ws.rm.policy.RMPolicyInterceptorProvider, org.apache.cxf.ws.rm.policy.RM10AssertionBuilder, org.apache.cxf.ws.rm.policy.RM12AssertionBuilder, org.apache.cxf.ws.rm.policy.WSRMP12PolicyLoader, org.apache.cxf.ws.rm.policy.MC11PolicyLoader, org.apache.cxf.ws.rm.policy.RSPPolicyLoader]
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://cxf.apache.org/ws/rm/manager
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.blueprint.NamespaceHandlerRegisterer register
+INFOS: Registered blueprint namespace handler for http://schemas.xmlsoap.org/ws/2005/02/rm/policy
+juil. 20, 2017 6:08:52 PM org.apache.cxf.bus.osgi.CXFExtensionBundleListener addExtensions
+INFOS: Adding the extensions from bundle org.apache.cxf.cxf-rt-javascript (225) [org.apache.cxf.javascript.JavascriptServerListener]
+juil. 20, 2017 6:08:52 PM org.pentaho.caching.impl.PentahoCacheManagerFactory$RegistrationHandler$1 onSuccess
+INFOS: New Caching Service registered
+juil. 20, 2017 6:09:01 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFOS: Setting the server's publish address to be /marketplace
+juil. 20, 2017 6:09:01 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFOS: Setting the server's publish address to be /lineage
+juil. 20, 2017 6:09:01 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFOS: Setting the server's publish address to be /i18n
+juil. 20, 2017 6:09:02 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFOS: Setting the server's publish address to be /repositories
+2017/07/20 18:09:07 - DBCache - Loading database cache from file: [/home/geourjoa/.kettle/db.cache-7.1.0.0-12]
+2017/07/20 18:09:07 - DBCache - We read 0 cached rows from the database cache!
+2017/07/20 18:09:08 - RepositoriesMeta - No repositories file found in the local directory: /home/geourjoa/git/TransformationManager1.0/transformation/pentaho/data-integration/repositories.xml
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - ERROR (version 7.1.0.0-12, build 1 from 2017-05-16 17.18.02 by buildguy) : Could not open a browser
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - ERROR (version 7.1.0.0-12, build 1 from 2017-05-16 17.18.02 by buildguy) : org.eclipse.swt.SWTError: No more handles [MOZILLA_FIVE_HOME=''] (java.lang.UnsatisfiedLinkError: Could not load SWT library. Reasons: 
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	no swt-mozilla-gtk-4335 in java.library.path
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	no swt-mozilla-gtk in java.library.path
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	/home/geourjoa/.swt/lib/linux/x86_64/libswt-mozilla-gtk-4335.so: libxpcom.so: Ne peut ouvrir le fichier d'objet partagé: Aucun fichier ou dossier de ce type
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	Can't load library: /home/geourjoa/.swt/lib/linux/x86_64/libswt-mozilla-gtk.so
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - )
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.eclipse.swt.SWT.error(Unknown Source)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.eclipse.swt.browser.Mozilla.initMozilla(Unknown Source)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.eclipse.swt.browser.Mozilla.create(Unknown Source)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.eclipse.swt.browser.Browser.<init>(Unknown Source)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.pentaho.di.ui.util.EnvironmentUtils.getUserAgent(EnvironmentUtils.java:85)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.pentaho.di.ui.util.EnvironmentUtils.getBrowserName(EnvironmentUtils.java:194)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.pentaho.di.ui.spoon.Spoon.checkEnvironment(Spoon.java:9197)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.pentaho.di.ui.spoon.Spoon.start(Spoon.java:9273)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.pentaho.di.ui.spoon.Spoon.main(Spoon.java:692)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at java.lang.reflect.Method.invoke(Method.java:498)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.pentaho.commons.launcher.Launcher.main(Launcher.java:92)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - Caused by: java.lang.UnsatisfiedLinkError: Could not load SWT library. Reasons: 
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	no swt-mozilla-gtk-4335 in java.library.path
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	no swt-mozilla-gtk in java.library.path
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	/home/geourjoa/.swt/lib/linux/x86_64/libswt-mozilla-gtk-4335.so: libxpcom.so: Ne peut ouvrir le fichier d'objet partagé: Aucun fichier ou dossier de ce type
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	Can't load library: /home/geourjoa/.swt/lib/linux/x86_64/libswt-mozilla-gtk.so
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.eclipse.swt.internal.Library.loadLibrary(Unknown Source)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	at org.eclipse.swt.internal.Library.loadLibrary(Unknown Source)
+2017/07/20 18:09:09 - org.pentaho.di.ui.util.EnvironmentUtils@7f7af971 - 	... 13 more
+2017/07/20 18:09:09 - Spoon - Trying to open the last file used.
+2017/07/20 18:10:02 - Carte - Installing timer to purge stale objects after 1440 minutes.
+2017/07/20 18:10:07 -  - Loading transformation from XML file [file:///home/geourjoa/git/webapp/webapp/storage/ECU/resource/get and set savings.ktr]
+2017/07/20 18:10:19 -  - Loading transformation from XML file [file:///home/geourjoa/git/webapp/webapp/storage/ECU/resource/custom_database_csv_creation.ktr]
+2017/07/20 18:11:57 -  - Loading transformation from XML file [file:///home/geourjoa/git/webapp/webapp/storage/ECU/resource/set file content.ktr]
+2017/07/20 18:19:35 -  - Loading transformation from XML file [file:///home/geourjoa/git/webapp/webapp/storage/ECU/resource/rewrite savings.ktr]
+2017/07/20 18:19:43 - Spoon - Save to file or repository...
+2017/07/20 18:19:44 - Spoon - File written to [file:///home/geourjoa/git/webapp/webapp/storage/ECU/resource/rewrite savings.ktr]
+2017/07/20 18:19:44 - DBCache - We wrote 0 cached rows to the database cache!
+2017/07/20 18:19:44 - rewrite savings - Transformation is pre-loaded.
+2017/07/20 18:19:44 - rewrite savings - nr of steps to run : 3  , nr of hops : 2
+2017/07/20 19:24:14 - Spoon - Save to file or repository...
+2017/07/20 19:24:14 - Spoon - File written to [file:///home/geourjoa/git/webapp/webapp/storage/ECU/resource/rewrite savings.ktr]
+2017/07/20 19:24:14 - DBCache - We wrote 0 cached rows to the database cache!
+2017/07/20 19:24:14 - rewrite savings - Transformation is pre-loaded.
+2017/07/20 19:24:14 - rewrite savings - nr of steps to run : 3  , nr of hops : 2
+2017/07/20 19:26:51 - Spoon - Save to file or repository...
+2017/07/20 19:26:51 - Spoon - File written to [file:///home/geourjoa/git/webapp/webapp/storage/ECU/resource/rewrite savings.ktr]
+2017/07/20 19:26:51 - rewrite savings - Transformation is pre-loaded.
+2017/07/20 19:26:51 - rewrite savings - nr of steps to run : 3  , nr of hops : 2
+2017/07/20 19:26:51 - DBCache - We wrote 0 cached rows to the database cache!
+2017/07/20 19:43:58 - Spoon - Quit application.
+2017/07/20 19:43:58 - Spoon - Spoon  has ended.
+Exception in thread "Thread-74" stopping
+org.eclipse.swt.SWTException: Failed to execute runnable (org.eclipse.swt.SWTException: Widget is disposed)
+	at org.eclipse.swt.SWT.error(Unknown Source)
+	at org.eclipse.swt.SWT.error(Unknown Source)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Unknown Source)
+	at org.eclipse.swt.widgets.Display.syncExec(Unknown Source)
+	at org.pentaho.di.ui.trans.steps.scriptvalues_mod.ScriptValuesModDialog.setInputOutputFields(ScriptValuesModDialog.java:1682)
+	at org.pentaho.di.ui.trans.steps.scriptvalues_mod.ScriptValuesModDialog.access$100(ScriptValuesModDialog.java:129)
+	at org.pentaho.di.ui.trans.steps.scriptvalues_mod.ScriptValuesModDialog$11.run(ScriptValuesModDialog.java:647)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(Unknown Source)
+	at org.eclipse.swt.SWT.error(Unknown Source)
+	at org.eclipse.swt.SWT.error(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.error(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Unknown Source)
+	at org.eclipse.swt.widgets.TreeItem.removeAll(Unknown Source)
+	at org.pentaho.di.ui.trans.steps.scriptvalues_mod.ScriptValuesModDialog$16.run(ScriptValuesModDialog.java:1685)
+	at org.eclipse.swt.widgets.RunnableLock.run(Unknown Source)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Unknown Source)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Unknown Source)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+	at org.eclipse.swt.widgets.Display.release(Unknown Source)
+	at org.eclipse.swt.graphics.Device.dispose(Unknown Source)
+	at org.pentaho.di.ui.spoon.Spoon.dispose(Spoon.java:1421)
+	at org.pentaho.di.ui.spoon.Spoon.waitForDispose(Spoon.java:8051)
+	at org.pentaho.di.ui.spoon.Spoon.start(Spoon.java:9277)
+	at org.pentaho.di.ui.spoon.Spoon.main(Spoon.java:692)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.pentaho.commons.launcher.Launcher.main(Launcher.java:92)

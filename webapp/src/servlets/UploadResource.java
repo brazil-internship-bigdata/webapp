@@ -40,7 +40,7 @@ public class UploadResource extends ServletWithConstants {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<Company> companies = companyDao.companyOverview();
+		List<Company> companies = companyDao.companies();
 		HttpSession session = request.getSession();
 		session.setAttribute("companyList", companies);
 
